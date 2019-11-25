@@ -1,0 +1,14 @@
+<div class="slider" #sliderElement (mousemove)="moveSlider($event)">
+  <div class="slider-track"></div>
+  <div class="slider-thumb" #thumbElement></div>
+  <div class="button" #minButtonElement (mousedown)="activateSlider(); setActivatedType('min')"></div>
+  <div class="button" #maxButtonElement (mousedown)="activateSlider(); setActivatedType('max')"></div>
+</div>
+<div class="label-container">
+  <div class="label min">
+    {{minLabel}}
+  </div>
+  <div class="label max">
+    {{maxLabel}}
+  </div>
+</div>

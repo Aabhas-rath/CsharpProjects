@@ -1,0 +1,30 @@
+@import "../../common";
+
+.chip-container {
+  height: 25px;
+  padding: 0 5px;
+  box-sizing: border-box;
+  border: 1px solid $silver-sand;
+  border-radius: 12.5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: $white;
+  
+  .label {
+    font-size: 12px;
+    color: $nevada;
+    margin: 0 5px;
+  }
+  
+  mat-icon {
+    font-size: 12px;
+    width: 12px;
+    height: 12px;
+    color: $silver-sand;
+  }
+}
+
+.chip-container:hover {
+  background-color: rgba(0, 0, 0, .08);
+}

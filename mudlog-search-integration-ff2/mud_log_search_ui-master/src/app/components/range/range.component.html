@@ -1,0 +1,27 @@
+<div class="range-container">
+  <app-input>
+    <input
+      type="number"
+      inputmode="numeric"
+      pattern="[0-9]*"
+      (blur)="changeValue('min', this.correctValue(value.min))"
+      [min]="min"
+      [max]="max"
+      [(ngModel)]="value && value.min"
+      (ngModelChange)="changeValue('min', $event)"/>
+  </app-input>
+  <div class="bar">
+    <span>-</span>
+  </div>
+  <app-input>
+    <input
+      type="number"
+      inputmode="numeric"
+      pattern="[0-9]*"
+      (blur)="changeValue('max', this.correctValue(value.max))"
+      [min]="min"
+      [max]="max"
+      [(ngModel)]="value && value.max"
+      (ngModelChange)="changeValue('max', $event)"/>
+  </app-input>
+</div>

@@ -1,0 +1,32 @@
+<div class="swap-list-container" #swapListContainerElement>
+  <div class="list-container">
+    <div class="input-container">
+      <div class="icon-container">
+        <mat-icon>search</mat-icon>
+      </div>
+      <input placeholder="Filter phrases..." [(ngModel)]="filterString"/>
+    </div>
+    <div class="list-inner">
+      <div class="list-item" [ngClass]="{'focus': isLeftSelected(item)}" *ngFor="let item of getFilteredList()" (click)="toggleLeftItemSelect(item)">
+        {{item.label}}
+      </div>
+    </div>
+  </div>
+  <div class="controller-container">
+    <div class="controller-inner">
+      <mat-icon (click)="swapList('left')">
+        arrow_back
+      </mat-icon>
+      <mat-icon (click)="swapList('right')">
+        arrow_forward
+      </mat-icon>
+    </div>
+  </div>
+  <div class="list-container">
+    <div class="list-inner">
+      <div class="list-item" [ngClass]="{'focus': isRightSelected(item)}" *ngFor="let item of swappedList" (click)="toggleRightItemSelect(item)">
+        {{item.label}}
+      </div>
+    </div>
+  </div>
+</div>

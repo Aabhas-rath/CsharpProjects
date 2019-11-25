@@ -1,0 +1,81 @@
+<div class="table-container">
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container cdkColumnDef="name">
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header>Well Name</mat-header-cell>
+      <mat-cell *cdkCellDef="let row">
+        <div class="well-name">
+          {{row.name}}
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="uwi">
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header>UWI</mat-header-cell>
+      <mat-cell *cdkCellDef="let row">
+          {{row.api}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="field">
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header>Field Name</mat-header-cell>
+      <mat-cell *cdkCellDef="let row">
+          {{row.field}}
+      </mat-cell>
+    </ng-container>
+    
+    <ng-container cdkColumnDef="vintage">
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header>Vintage</mat-header-cell>
+      <mat-cell *cdkCellDef="let row">{{row.vintage}}</mat-cell>
+    </ng-container>
+    
+    <ng-container cdkColumnDef="location">
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header>Location</mat-header-cell>
+      <mat-cell *cdkCellDef="let row">
+        {{row.place.location}}
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container cdkColumnDef="{{alias}}" *ngFor="let alias of aliases">
+      <mat-header-cell *cdkHeaderCellDef>{{alias}}</mat-header-cell>
+      <mat-cell *cdkCellDef="let row" class="phrases-container">
+        <div class="phrases-container" *ngIf="!isFocused(row)" [innerHtml]="getPhraseStringArrayForAlias(row, alias)">
+        </div>
+        <div class="phrases-container" *ngIf="isFocused(row)">
+          <div class="phrases">
+            <div class="phrase" *ngFor="let item of getPhrasesOfAlias(row, alias)">
+              <div class="value">{{item.value}} ({{item.count}})</div>
+              <div class="deep">
+                <mat-icon>
+                  height
+                </mat-icon>
+                <span>
+                    {{getPhraseDepthArray(item.depth)}}
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-cell>
+    </ng-container>
+    <ng-container cdkColumnDef="viewLog">
+      <mat-header-cell *cdkHeaderCellDef mat-sort-header>View Mud Logs</mat-header-cell>
+      <mat-cell *cdkCellDef="let row" class="view-logs">
+        <ul>
+          <li *ngFor="let url of row.imageUrls;let i = index">
+            <button (click)="viewMudLogs(url)" *ngIf="row.imageUrls.length === 1">
+              View
+            </button>
+            <button (click)="viewMudLogs(url)" *ngIf="row.imageUrls.length > 1">
+              View <span>#{{i+1}}</span>
+            </button>
+          </li>
+        </ul>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *cdkHeaderRowDef="['name', 'uwi', 'field', 'vintage', 'cut', 'flor', 'stn', 'odor', 'strmg', 'resd', 'bleeding', 'viewLog']; sticky: true"></mat-header-row>
+    <mat-row *cdkRowDef="let row; columns: ['name', 'uwi', 'field', 'vintage', 'cut', 'flor', 'stn', 'odor', 'strmg', 'resd', 'bleeding', 'viewLog']"
+             [ngClass]="{'focus': isFocused(row)}" (click)="toggleFocus(row)"></mat-row>
+  </mat-table>
+</div>

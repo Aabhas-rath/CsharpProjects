@@ -1,0 +1,13 @@
+@import "../../common";
+
+.range-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 47.5% 5% 47.5%;
+  
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

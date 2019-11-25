@@ -1,0 +1,131 @@
+<div class="map-container">
+  <app-map
+    #mapComponent
+    type="filtered"
+    [(focus)]="focus"
+    [phraseCountFilter]="phraseCountFilter"
+    [colorPalette]="colorPalette"
+    [wellList]="wellList"
+    (changeExtent)="onChangeExtent($event)"
+    (phraseCountChange)="onPhraseCountChange($event)"></app-map>
+</div>
+<div class="result-container" [ngClass]="{'hide': showPhraseCountDetailElement}">
+  <div class="result-header" *ngIf="filter && filterBounds">
+    <div class="result-header-inner">
+      <div class="controller-container">
+        <div class="field-container">
+          <app-field label="Phrase Count">
+            <app-field-sub-header>
+              {{filter.phrase.count.min}} - {{filterBounds.maxPhraseCount}}
+            </app-field-sub-header>
+            <div class="slider-container">
+              <input
+                type="number"
+                min="0"
+                name="minCount"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                [(ngModel)]="filter.phrase.count.min"
+                (ngModelChange)="phraseCountSliderComponent.detectChange(); changeCommonPhraseCount(); updateFilterCriteria()"/>
+              <app-range-slider
+                maxLabel="{{filterBounds.maxPhraseCount}}+"
+                #phraseCountSliderComponent
+                [(value)]="filter.phrase.count"
+                (valueChange)="changeCommonPhraseCount(); updateFilterCriteria()"
+                [ignoreOverflow]="true"
+                [min]="0"
+                [max]="filterBounds.maxPhraseCount"></app-range-slider>
+              <input
+                type="number"
+                min="0"
+                name="maxCount"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                [(ngModel)]="filter.phrase.count.max"
+                (ngModelChange)="phraseCountSliderComponent.detectChange(); changeCommonPhraseCount(); updateFilterCriteria()"/>
+              <div class="more" (click)="showPhraseCountDetail()">
+                More Option
+              </div>
+            </div>
+          </app-field>
+        </div>
+        <div class="field-container">
+          <app-field label="Phrase Score">
+            <app-field-sub-header>
+              {{(filter.phrase.score.max >= filterBounds.maxPhraseScore) ? filterBounds.maxPhraseScore + '+' : filter.phrase.score.max}}
+            </app-field-sub-header>
+            <app-range-slider (valueChange)="updateFilterCriteria()" [(value)]="filter.phrase.score" [min]="0" [max]="filterBounds.maxPhraseScore" maxLabel="{{filterBounds.maxPhraseScore}}+"></app-range-slider>
+          </app-field>
+        </div>
+      </div>
+    </div>
+    <div class="title">
+      <mat-icon (click)="backToMain()">
+        arrow_back
+      </mat-icon>
+      <div class="label">
+        Filtered Results
+      </div>
+    </div>
+    <div class="button-container">
+      <button mat-button color="primary" (click)="toggleCriteria()">
+        <ng-container *ngIf="!showCriteriaElement; else hideButtonTemplate">
+          Show filter criteria
+        </ng-container>
+        <ng-template #hideButtonTemplate>
+          Hide filter criteria
+        </ng-template>
+      </button>
+      <button mat-flat-button color="primary" (click)="exportToExcel($event)">
+        Export to Excel
+      </button>
+    </div>
+  </div>
+  <div class="criteria-container" *ngIf="filter && showCriteriaElement">
+    <app-chip *ngFor="let item of chipList" (click)="removeChip(item); createFilterChips()">{{item.label}}</app-chip>
+  </div>
+
+  <div class="pagination-controls">
+    <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
+  </div>
+  <app-filtered-table [(focus)]="focus" [list]="wellList | paginate: config"></app-filtered-table>
+</div>
+<div class="result-container filter-detail" *ngIf="showPhraseCountDetailElement">
+  <div class="result-header">
+    <div class="title">
+      <mat-icon (click)="hidePhraseCountDetail()">
+        arrow_back
+      </mat-icon>
+      <div class="label">
+        Detailed Phrase Count
+      </div>
+    </div>
+  </div>
+  <div class="filter-container">
+    <div class="field-container" *ngFor="let phrase of filter.phrase.phrases">
+      <div class="title">
+        <div class="label">
+          {{phrase.value}}
+        </div>
+        <mat-icon (click)="colorPickerElement.click()">
+          color_lens
+          <input
+            #colorPickerElement
+            cpPosition="top"
+            [colorPicker]="getColorFromPalette(phrase.value)"
+            (colorPickerChange)="setColorToPalette($event, phrase.value); phraseSlider.detectChange(); mapComponent.addMarkersOnMap()"/>
+        </mat-icon>
+      </div>
+      <app-range [min]="0" [(value)]="phrase.range" (valueChange)="phraseSlider.detectChange(); updateFilterCriteria()"></app-range>
+      <app-range-slider
+        #phraseSlider
+        [color]="getColorFromPalette(phrase.value)"
+        [min]="0"
+        [max]="50"
+        [ignoreOverflow]="true"
+        [(value)]="phrase.range"
+        (valueChange)="updateFilterCriteria()"
+        maxLabel="50+"></app-range-slider>
+    </div>
+  </div>
+</div>

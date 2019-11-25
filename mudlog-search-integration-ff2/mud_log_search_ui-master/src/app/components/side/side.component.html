@@ -1,0 +1,117 @@
+<div class="side-container" *ngIf="filterBounds" #sideComponent>
+  <div class="title">
+    Filter Wells
+  </div>
+  <app-field label="API #">
+    <app-field-sub-header class="api-upload-container">
+      <button (click)="uploadTextFileInputElement.click()">
+        Upload text file
+      </button>
+      <input #uploadTextFileInputElement type="file" accept="text/plain" (change)="onFileUpload($event)"/>
+    </app-field-sub-header>
+    <app-input>
+      <input type="text" placeholder="Use comma to separate for multiple APIs" [(ngModel)]="data.api"/>
+    </app-input>
+  </app-field>
+  <app-field label="States">
+    <app-select #stateSelector [autocomplete]="true" [multiple]="true" [(value)]="data.states" [optionList]="stateList" placeholder="Select States" (valueChange)="stateSelected($event)">
+      <app-option [value]="state.value" *ngFor="let state of stateList">
+        {{state.label}}
+      </app-option>
+    </app-select>
+  </app-field>
+  <app-field label="Basin">
+    <app-select #basinSelector placeholder="Select Basin" [(value)]="data.basin" [optionList]="basinList" (valueChange)="basinSelected($event)">
+      <app-option [value]="basin.value" *ngFor="let basin of basinList">
+        {{basin.label}}
+      </app-option>
+    </app-select>
+  </app-field>
+  <app-field label="County">
+    <app-select [autocomplete]="true" [(value)]="data.county" [optionList]="countyList" placeholder="Select County" (valueChange)="countySelected($event)">
+      <app-option [value]="county.value" *ngFor="let county of countyList">
+        {{county.label}}
+      </app-option>
+    </app-select>
+  </app-field>
+  <app-field label="Field">
+    <app-select placeholder="Select Field" [(value)]="data.field" [optionList]="fieldList" (valueChange)="fieldSelected($event)">
+      <app-option [value]="field.value" *ngFor="let field of fieldList">
+        {{field.label}}
+      </app-option>
+    </app-select>
+  </app-field>
+  <app-field label="Depth">
+    <div class="depth-container">
+      <div class="range-container">
+        <app-range [min]="0" [max]="filterBounds.maxDepth" [(value)]="data.depth" (valueChange)="depthSliderComponent.detectChange()"></app-range>
+        <app-select [(value)]="data.depth.unit" [optionList]="unitList">
+          <app-option [value]="unit.value" *ngFor="let unit of unitList">
+            {{unit.label}}
+          </app-option>
+        </app-select>
+      </div>
+      <app-range-slider #depthSliderComponent 
+        [min]="0" 
+        [max]="filterBounds.maxDepth" 
+        [(value)]="data.depth" 
+        [tick]="1" 
+        minLabel="0" 
+        maxLabel="{{filterBounds.maxDepth}}">
+      </app-range-slider>
+    </div>
+  </app-field>
+  <app-field label="Vintage">
+    <app-range [min]="1900" [max]="filterBounds.maxVintage" [(value)]="data.vintage" (valueChange)="vintageSliderComponent.detectChange()"></app-range>
+    <app-range-slider #vintageSliderComponent [min]="1900" [max]="filterBounds.maxVintage" [(value)]="data.vintage" [tick]="1"></app-range-slider>
+  </app-field>
+  <app-field label="Phrase Category" *ngIf="phraseTypesLoaded">
+    <form [formGroup]="phraseCategoryFormGroup" (ngSubmit)="$event.preventDefault()" class="phrase-category-container">
+      <mat-checkbox formControlName="{{phraseType.value}}" color="primary" *ngFor="let phraseType of phraseTypeList">{{phraseType.value}}</mat-checkbox>
+    </form>
+  </app-field>
+  <app-field label="Phrases">
+    <app-swap-list
+      class="phrases-swap-list"
+      [list]="phraseList"
+      [height]="230"
+      [(swappedList)]="data.phrase.phrases"
+      (swappedListChange)="setRangeMinMax($event)"></app-swap-list>
+  </app-field>
+  <app-field label="Phrase Count">
+    <app-range
+      [min]="0"
+      [(value)]="data.phrase.count"
+      (valueChange)="phraseCountSliderComponent.detectChange(); setRangeMinMax(data.phrase.phrases)"></app-range>
+    <app-range-slider
+      #phraseCountSliderComponent
+      maxLabel="{{filterBounds.maxPhraseCount}}+"
+      [ignoreOverflow]="true"
+      [min]="0"
+      [max]="filterBounds.maxPhraseCount"
+      [tick]="1"
+      [(value)]="data.phrase.count"
+      (valueChange)="setRangeMinMax(data.phrase.phrases)"></app-range-slider>
+  </app-field>
+  <app-field label="Phrase Score">
+    <app-field-sub-header>
+      <ng-container *ngIf="data.phrase.score.max < filterBounds.maxPhraseScore; else over500Template">
+        {{data.phrase.score.max}}
+      </ng-container>
+      <ng-template #over500Template>
+        {{filterBounds.maxPhraseScore}}+
+      </ng-template>
+    </app-field-sub-header>
+    <app-range-slider
+    #phraseScoreSliderComponent
+      maxLabel="{{filterBounds.maxPhraseScore}}+"
+      [min]="0"
+      [max]="filterBounds.maxPhraseScore"
+      [tick]="1"
+      [(value)]="data.phrase.score"></app-range-slider>
+  </app-field>
+  <div class="button-container">
+    <button mat-flat-button color="primary" (click)="emitFilterApply()">Apply</button>
+    <button mat-button color="primary" (click)="initFilter(true)">Reset</button>
+  </div>
+</div>

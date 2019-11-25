@@ -1,0 +1,101 @@
+@import "../../common";
+
+/**
+set input height
+and set .list-inner height with calc(100% - $input-height - 1px)
+ */
+$input-height: 30px;
+
+.swap-list-container {
+  position: relative;
+  width: 100%;
+  height: inherit;
+  display: grid;
+  grid-template-columns: 44% 12% 44%;
+  
+  .list-container {
+    position: relative;
+    height: 100%;
+    box-sizing: border-box;
+    border: 1px solid $bombay;
+    border-radius: 5px;
+    
+    .input-container {
+      display: grid;
+      grid-template-columns: 30px auto;
+      border-bottom: 1px solid $bombay;
+      align-items: center;
+      
+      .icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        mat-icon {
+          color: $bombay;
+          font-size: 20px;
+          width: 20px;
+          height: 20px;
+        }
+      }
+      
+      input {
+        width: 100%;
+        height: $input-height;
+        font-size: 13px;
+        background-color: transparent;
+      }
+    }
+    
+    .list-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      
+      .list-item {
+        position: relative;
+        width: 100%;
+        padding: 3px 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 13px;
+        color: $nevada;
+        cursor: pointer;
+        box-sizing: border-box;
+      }
+      
+      .list-item.focus {
+        background-color: rgba($dodger-blue, .15);
+      }
+    }
+    
+    .input-container + .list-inner {
+      height: calc(100% - #{$input-height} - 1px);
+    }
+  }
+  
+  .controller-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .controller-inner {
+      display: flex;
+      flex-direction: column;
+      
+      mat-icon {
+        margin: 6px 0;
+        color: $bombay;
+        cursor: pointer;
+      }
+      
+      mat-icon:hover {
+        color: $science-blue;
+      }
+    }
+  }
+}
+

@@ -1,0 +1,22 @@
+
+spring:
+  application:
+    name: mudlog-service
+  datasource:
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://mud-log-testing.ck5o0ub4ypmv.us-east-1.rds.amazonaws.com:1433;databaseName=mud_log_f2f
+    username: topcoder
+    password: T0pC0der
+
+server:
+  port: ${port:3000}
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          servlet: debug
+
+enableSwagger:
+  true

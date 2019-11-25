@@ -1,0 +1,60 @@
+<div class="select-container" [ngClass]="{'focus': focus}">
+  <div class="select-display">
+    <ng-container *ngIf="autocomplete; else nonAutoCompleteTemplate">
+      <ng-container *ngIf="!focus; else inputTemplate">
+        <ng-container *ngIf="isValueSet(); else autoCompletePlaceholderTemplate">
+          <div class="value" (click)="setFocus(true)">
+            <span>
+              {{getSelectedLabel()}}
+            </span>
+          </div>
+        </ng-container>
+        <ng-template #autoCompletePlaceholderTemplate>
+          <div class="placeholder" (click)="setFocus(true)">
+            <span>
+              {{placeholder}}
+            </span>
+          </div>
+        </ng-template>
+      </ng-container>
+      <ng-template #inputTemplate>
+        <input [placeholder]="placeholder" (input)="emitValueChange(); filterOptions();" [(ngModel)]="keyword"/>
+      </ng-template>
+    </ng-container>
+    <ng-template #nonAutoCompleteTemplate>
+      <ng-container *ngIf="value; else placeholderTemplate">
+        <div class="value" (click)="setFocus(!focus)">
+          <span>
+            {{getSelectedLabel()}}
+          </span>
+        </div>
+      </ng-container>
+      <ng-template #placeholderTemplate>
+        <div class="placeholder" (click)="setFocus(!focus)">
+          <span>
+            {{placeholder}}
+          </span>
+        </div>
+      </ng-template>
+    </ng-template>
+  </div>
+  <div class="control-display">
+    <mat-icon (click)="setFocus(!focus)">
+      arrow_drop_down
+    </mat-icon>
+  </div>
+</div>
+<div class="options-container" [ngClass]="{'multiple': multiple}" *ngIf="focus">
+  <ng-container *ngIf="filteredList.length > 0; else appOptionsTemplate">
+    <app-option
+      [ngClass]="{'selected': isSelected(option)}"
+      [value]="option.value"
+      *ngFor="let option of filteredList">
+      {{option.label}}
+    </app-option>
+  </ng-container>
+  <ng-template #appOptionsTemplate>
+    <ng-content select="app-option"></ng-content>
+  </ng-template>
+</div>
+<div class="pointer-cover" *ngIf="focus" (click)="setFocus(false)" (wheel)="setFocus(false)"></div>

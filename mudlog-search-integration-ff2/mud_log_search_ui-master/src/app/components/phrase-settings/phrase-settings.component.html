@@ -1,0 +1,50 @@
+<app-modal class="phrase-settings-container">
+  <div class="header">
+    <div class="title">
+      Phrase Count Settings
+    </div>
+  </div>
+  <div class="body">
+    <div class="row">
+      <div class="icon">
+        <div class="dot small"></div>
+      </div>
+      <div class="input-container">
+        <app-range [min]="0" [value]="phraseCountFilter.small"></app-range>
+      </div>
+    </div>
+    <div class="row">
+      <div class="icon">
+        <div class="dot medium"></div>
+      </div>
+      <div class="input-container">
+        <app-range [min]="0" [value]="phraseCountFilter.medium"></app-range>
+      </div>
+    </div>
+    <div class="row">
+      <div class="icon">
+        <div class="dot large"></div>
+      </div>
+      <div class="input-container">
+        <app-range [min]="0" [value]="phraseCountFilter.large"></app-range>
+      </div>
+    </div>
+    <div class="row">
+      <div class="icon">
+        <div class="dot x-large"></div>
+      </div>
+      <div class="input-container">
+        <app-range [min]="0" [value]="phraseCountFilter.xLarge"></app-range>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <button mat-flat-button color="primary" (click)="emitApplySetting()">
+      Apply
+    </button>
+    <button mat-button color="primary" (click)="emitCancelSetting()">
+      Cancel
+    </button>
+  </div>
+</app-modal>
+<div class="arrow"></div>

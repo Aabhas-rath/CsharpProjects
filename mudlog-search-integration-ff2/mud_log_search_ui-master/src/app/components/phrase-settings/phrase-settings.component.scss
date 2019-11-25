@@ -1,0 +1,92 @@
+@import "../../common";
+
+.phrase-settings-container {
+  width: 250px;
+  height: auto;
+
+  .header {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .row {
+      display: grid;
+      align-items: center;
+      grid-template-columns: 50px auto;
+      margin-bottom: 10px;
+
+      .icon {
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .dot {
+          border-radius: 50%;
+          border: 1px solid $bombay;
+
+          &.small {
+            width: 10px;
+            height: 10px;
+          }
+
+          &.medium {
+            width: 15px;
+            height: 15px;
+          }
+
+          &.large {
+            width: 20px;
+            height: 20px;
+          }
+
+          &.x-large {
+            width: 25px;
+            height: 25px;
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+    height: 37px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    button {
+      margin-right: 10px;
+    }
+  }
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 10px -17px rgba(0, 0, 0, 0.5);
+  transform: rotate(180deg);
+  left: 162px;
+}
+
+.arrow:after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  transform: rotate(45deg); /* Prefixes... */
+  top: 15px;
+  left: 5px;
+  box-shadow: -1px -1px 10px -2px rgba(0, 0, 0, 0.5);
+}

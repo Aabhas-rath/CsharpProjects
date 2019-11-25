@@ -1,0 +1,400 @@
+{
+	"info": {
+		"_postman_id": "0d36ae19-a340-427f-86d2-792c7aa3de67",
+		"name": "log-search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "lookup",
+			"item": [
+				{
+					"name": "lookup filter-range-bounds",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APP_URL}}/lookup/filter-range-bounds",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"lookup",
+								"filter-range-bounds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lookup phrase-types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APP_URL}}/lookup/phrase-types",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"lookup",
+								"phrase-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lookup states",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APP_URL}}/lookup/states",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"lookup",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lookup basins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APP_URL}}/lookup/basins",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"lookup",
+								"basins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lookup phrases",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APP_URL}}/lookup/phrases",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"lookup",
+								"phrases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lookup counties of states",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APP_URL}}/lookup/counties?states=Utah",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"lookup",
+								"counties"
+							],
+							"query": [
+								{
+									"key": "states",
+									"value": "Utah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lookup fields for states",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APP_URL}}/lookup/fields?states=Utah",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"lookup",
+								"fields"
+							],
+							"query": [
+								{
+									"key": "states",
+									"value": "Utah"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lookup fields for basin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APP_URL}}/lookup/fields?basin=UINTA%20BASIN",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"lookup",
+								"fields"
+							],
+							"query": [
+								{
+									"key": "basin",
+									"value": "UINTA%20BASIN"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "filter",
+			"item": [
+				{
+					"name": "filter with just map extent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APP_URL}}/wells?lat1=26.75756416247242&lon1=-133.48318359375&lat2=51.65360004592378&lon2=-61.45681640624999",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"wells"
+							],
+							"query": [
+								{
+									"key": "lat1",
+									"value": "26.75756416247242"
+								},
+								{
+									"key": "lon1",
+									"value": "-133.48318359375"
+								},
+								{
+									"key": "lat2",
+									"value": "51.65360004592378"
+								},
+								{
+									"key": "lon2",
+									"value": "-61.45681640624999"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filter with map extent and params",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APP_URL}}/wells/search?uwis=&states=Utah&county=Grand&minDepth=0&maxDepth=5097&minVintage=1900&maxVintage=2019&minPhraseCount=0&maxPhraseCount=560&minPhraseScore=0&maxPhraseScore=1000&offset=0&limit=10&lat1=35.79302978030459&lon1=-133.50515625&lat2=44.599999567338415&lon2=-61.43484375",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"wells",
+								"search"
+							],
+							"query": [
+								{
+									"key": "uwis",
+									"value": ""
+								},
+								{
+									"key": "states",
+									"value": "Utah"
+								},
+								{
+									"key": "county",
+									"value": "Grand"
+								},
+								{
+									"key": "minDepth",
+									"value": "0"
+								},
+								{
+									"key": "maxDepth",
+									"value": "5097"
+								},
+								{
+									"key": "minVintage",
+									"value": "1900"
+								},
+								{
+									"key": "maxVintage",
+									"value": "2019"
+								},
+								{
+									"key": "minPhraseCount",
+									"value": "0"
+								},
+								{
+									"key": "maxPhraseCount",
+									"value": "560"
+								},
+								{
+									"key": "minPhraseScore",
+									"value": "0"
+								},
+								{
+									"key": "maxPhraseScore",
+									"value": "1000"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "lat1",
+									"value": "35.79302978030459"
+								},
+								{
+									"key": "lon1",
+									"value": "-133.50515625"
+								},
+								{
+									"key": "lat2",
+									"value": "44.599999567338415"
+								},
+								{
+									"key": "lon2",
+									"value": "-61.43484375"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "export",
+			"item": [
+				{
+					"name": "Export - 200",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{APP_URL}}/wells/export?uwis=&states=all&field=Lisbon&minDepth=0&maxDepth=2438&minVintage=1900&maxVintage=2019&minPhraseCount=0&maxPhraseCount=560&minPhraseScore=0&maxPhraseScore=1000&offset=0&limit=10&lat1=34.33634650815202&lon1=-133.50515625&lat2=45.85343228995271&lon2=-61.43484375",
+							"host": [
+								"{{APP_URL}}"
+							],
+							"path": [
+								"wells",
+								"export"
+							],
+							"query": [
+								{
+									"key": "uwis",
+									"value": ""
+								},
+								{
+									"key": "states",
+									"value": "all"
+								},
+								{
+									"key": "field",
+									"value": "Lisbon"
+								},
+								{
+									"key": "minDepth",
+									"value": "0"
+								},
+								{
+									"key": "maxDepth",
+									"value": "2438"
+								},
+								{
+									"key": "minVintage",
+									"value": "1900"
+								},
+								{
+									"key": "maxVintage",
+									"value": "2019"
+								},
+								{
+									"key": "minPhraseCount",
+									"value": "0"
+								},
+								{
+									"key": "maxPhraseCount",
+									"value": "560"
+								},
+								{
+									"key": "minPhraseScore",
+									"value": "0"
+								},
+								{
+									"key": "maxPhraseScore",
+									"value": "1000"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "lat1",
+									"value": "34.33634650815202"
+								},
+								{
+									"key": "lon1",
+									"value": "-133.50515625"
+								},
+								{
+									"key": "lat2",
+									"value": "45.85343228995271"
+								},
+								{
+									"key": "lon2",
+									"value": "-61.43484375"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	]
+}

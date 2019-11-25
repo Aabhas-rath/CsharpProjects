@@ -1,0 +1,616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LoginInfo">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="emailId" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="PictureContent">
+          <Key>
+            <PropertyRef Name="PicContentId" />
+          </Key>
+          <Property Name="PicContentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PicId" Type="int" />
+          <Property Name="Caption" Type="nvarchar" MaxLength="200" />
+          <Property Name="Path" Type="nvarchar" MaxLength="50" />
+          <Property Name="PictureFileName" Type="nvarchar" MaxLength="20" />
+          <Property Name="PicThumbnailPath" Type="nvarchar" MaxLength="50" />
+          <Property Name="takenBy" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="PictureMetadata">
+          <Key>
+            <PropertyRef Name="PicId" />
+          </Key>
+          <Property Name="PicId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="fileSize" Type="int" />
+          <Property Name="Height" Type="int" />
+          <Property Name="Width" Type="int" />
+          <Property Name="Format" Type="nvarchar" MaxLength="8" />
+          <Property Name="picturePriority" Type="int" />
+          <Property Name="isPostBackground" Type="bit" />
+          <Property Name="isPostMainPicture" Type="bit" />
+          <Property Name="AssociatedPostId" Type="int" />
+        </EntityType>
+        <EntityType Name="postContent">
+          <Key>
+            <PropertyRef Name="postContentId" />
+          </Key>
+          <Property Name="postContentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="postId" Type="int" Nullable="false" />
+          <Property Name="Heading" Type="nvarchar" MaxLength="500" />
+          <Property Name="Content" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PostContent_Tags">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="int" Nullable="false" />
+          <Property Name="postId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="postmetadata">
+          <Key>
+            <PropertyRef Name="postId" />
+          </Key>
+          <Property Name="postId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="noOfViews" Type="int" />
+          <Property Name="noOfLikes" Type="int" />
+          <Property Name="hasPics" Type="bit" />
+          <Property Name="hasTags" Type="bit" />
+          <Property Name="noOfPics" Type="int" />
+          <Property Name="noOfTags" Type="int" />
+          <Property Name="isSponsoredPost" Type="bit" />
+          <Property Name="authorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="isNewTag" Type="bit" />
+          <Property Name="tagCounter" Type="int" />
+          <Property Name="Content" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="15" />
+          <Property Name="NoOfPosts" Type="int" Nullable="false" />
+          <Property Name="NoOfTags" Type="int" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="isAuthor" Type="bit" Nullable="false" />
+          <Property Name="AdminId" Type="int" Nullable="false" />
+          <Property Name="isAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'F:\ROHIN PROJECT\BIHARSEHU_TEST2\TESTSITE\APP_DATA\DATABASE.MDF.dbo.UserInfo_Tags' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserInfo_Tags">
+          <Key>
+            <PropertyRef Name="tagId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="tagId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_PictureContent_PictureMetadata">
+          <End Role="PictureMetadata" Type="Self.PictureMetadata" Multiplicity="0..1" />
+          <End Role="PictureContent" Type="Self.PictureContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PictureMetadata">
+              <PropertyRef Name="PicId" />
+            </Principal>
+            <Dependent Role="PictureContent">
+              <PropertyRef Name="PicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PictureMetadata_postmetadata">
+          <End Role="postmetadata" Type="Self.postmetadata" Multiplicity="0..1" />
+          <End Role="PictureMetadata" Type="Self.PictureMetadata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="postmetadata">
+              <PropertyRef Name="postId" />
+            </Principal>
+            <Dependent Role="PictureMetadata">
+              <PropertyRef Name="AssociatedPostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_postContent_postmetadata">
+          <End Role="postmetadata" Type="Self.postmetadata" Multiplicity="1" />
+          <End Role="postContent" Type="Self.postContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="postmetadata">
+              <PropertyRef Name="postId" />
+            </Principal>
+            <Dependent Role="postContent">
+              <PropertyRef Name="postId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostContent_Tags_postmetadata">
+          <End Role="postmetadata" Type="Self.postmetadata" Multiplicity="1" />
+          <End Role="PostContent_Tags" Type="Self.PostContent_Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="postmetadata">
+              <PropertyRef Name="postId" />
+            </Principal>
+            <Dependent Role="PostContent_Tags">
+              <PropertyRef Name="postId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostContent_Tags_Tags">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="1" />
+          <End Role="PostContent_Tags" Type="Self.PostContent_Tags" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="tagId" />
+            </Principal>
+            <Dependent Role="PostContent_Tags">
+              <PropertyRef Name="tagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_postmetadata_LoginInfo">
+          <End Role="LoginInfo" Type="Self.LoginInfo" Multiplicity="1" />
+          <End Role="postmetadata" Type="Self.postmetadata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginInfo">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="postmetadata">
+              <PropertyRef Name="authorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_LoginInfo">
+          <End Role="LoginInfo" Type="Self.LoginInfo" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginInfo">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_Tags_Tags">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="1" />
+          <End Role="UserInfo_Tags" Type="Self.UserInfo_Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="tagId" />
+            </Principal>
+            <Dependent Role="UserInfo_Tags">
+              <PropertyRef Name="tagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_Tags_UserInfo">
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+          <End Role="UserInfo_Tags" Type="Self.UserInfo_Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserInfo">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="UserInfo_Tags">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseModelStoreContainer">
+          <EntitySet Name="LoginInfo" EntityType="Self.LoginInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PictureContent" EntityType="Self.PictureContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PictureMetadata" EntityType="Self.PictureMetadata" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="postContent" EntityType="Self.postContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostContent_Tags" EntityType="Self.PostContent_Tags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="postmetadata" EntityType="Self.postmetadata" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo_Tags" EntityType="Self.UserInfo_Tags" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserInfo_Tags].[tagId] AS [tagId], 
+    [UserInfo_Tags].[UserId] AS [UserId]
+    FROM [dbo].[UserInfo_Tags] AS [UserInfo_Tags]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_PictureContent_PictureMetadata" Association="Self.FK_PictureContent_PictureMetadata">
+            <End Role="PictureMetadata" EntitySet="PictureMetadata" />
+            <End Role="PictureContent" EntitySet="PictureContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PictureMetadata_postmetadata" Association="Self.FK_PictureMetadata_postmetadata">
+            <End Role="postmetadata" EntitySet="postmetadata" />
+            <End Role="PictureMetadata" EntitySet="PictureMetadata" />
+          </AssociationSet>
+          <AssociationSet Name="FK_postContent_postmetadata" Association="Self.FK_postContent_postmetadata">
+            <End Role="postmetadata" EntitySet="postmetadata" />
+            <End Role="postContent" EntitySet="postContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostContent_Tags_postmetadata" Association="Self.FK_PostContent_Tags_postmetadata">
+            <End Role="postmetadata" EntitySet="postmetadata" />
+            <End Role="PostContent_Tags" EntitySet="PostContent_Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostContent_Tags_Tags" Association="Self.FK_PostContent_Tags_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="PostContent_Tags" EntitySet="PostContent_Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_postmetadata_LoginInfo" Association="Self.FK_postmetadata_LoginInfo">
+            <End Role="LoginInfo" EntitySet="LoginInfo" />
+            <End Role="postmetadata" EntitySet="postmetadata" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_LoginInfo" Association="Self.FK_UserInfo_LoginInfo">
+            <End Role="LoginInfo" EntitySet="LoginInfo" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_Tags_Tags" Association="Self.FK_UserInfo_Tags_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="UserInfo_Tags" EntitySet="UserInfo_Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_Tags_UserInfo" Association="Self.FK_UserInfo_Tags_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="UserInfo_Tags" EntitySet="UserInfo_Tags" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LoginInfo">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="emailId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="postmetadatas" Relationship="Self.FK_postmetadata_LoginInfo" FromRole="LoginInfo" ToRole="postmetadata" />
+          <NavigationProperty Name="UserInfoes" Relationship="Self.FK_UserInfo_LoginInfo" FromRole="LoginInfo" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="PictureContent">
+          <Key>
+            <PropertyRef Name="PicContentId" />
+          </Key>
+          <Property Name="PicContentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PicId" Type="Int32" />
+          <Property Name="Caption" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Path" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PictureFileName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PicThumbnailPath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="takenBy" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PictureMetadata" Relationship="Self.FK_PictureContent_PictureMetadata" FromRole="PictureContent" ToRole="PictureMetadata" />
+        </EntityType>
+        <EntityType Name="PictureMetadata">
+          <Key>
+            <PropertyRef Name="PicId" />
+          </Key>
+          <Property Name="PicId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fileSize" Type="Int32" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="Width" Type="Int32" />
+          <Property Name="Format" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="picturePriority" Type="Int32" />
+          <Property Name="isPostBackground" Type="Boolean" />
+          <Property Name="isPostMainPicture" Type="Boolean" />
+          <Property Name="AssociatedPostId" Type="Int32" />
+          <NavigationProperty Name="PictureContents" Relationship="Self.FK_PictureContent_PictureMetadata" FromRole="PictureMetadata" ToRole="PictureContent" />
+          <NavigationProperty Name="postmetadata" Relationship="Self.FK_PictureMetadata_postmetadata" FromRole="PictureMetadata" ToRole="postmetadata" />
+        </EntityType>
+        <EntityType Name="postContent">
+          <Key>
+            <PropertyRef Name="postContentId" />
+          </Key>
+          <Property Name="postContentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="postId" Type="Int32" Nullable="false" />
+          <Property Name="Heading" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="postmetadata" Relationship="Self.FK_postContent_postmetadata" FromRole="postContent" ToRole="postmetadata" />
+        </EntityType>
+        <EntityType Name="postmetadata">
+          <Key>
+            <PropertyRef Name="postId" />
+          </Key>
+          <Property Name="postId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="noOfViews" Type="Int32" />
+          <Property Name="noOfLikes" Type="Int32" />
+          <Property Name="hasPics" Type="Boolean" />
+          <Property Name="hasTags" Type="Boolean" />
+          <Property Name="noOfPics" Type="Int32" />
+          <Property Name="noOfTags" Type="Int32" />
+          <Property Name="isSponsoredPost" Type="Boolean" />
+          <Property Name="authorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LoginInfo" Relationship="Self.FK_postmetadata_LoginInfo" FromRole="postmetadata" ToRole="LoginInfo" />
+          <NavigationProperty Name="PictureMetadatas" Relationship="Self.FK_PictureMetadata_postmetadata" FromRole="postmetadata" ToRole="PictureMetadata" />
+          <NavigationProperty Name="postContents" Relationship="Self.FK_postContent_postmetadata" FromRole="postmetadata" ToRole="postContent" />
+          <NavigationProperty Name="Tags" Relationship="Self.PostContent_Tags" FromRole="postmetadata" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="isNewTag" Type="Boolean" />
+          <Property Name="tagCounter" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="postmetadata" Relationship="Self.PostContent_Tags" FromRole="Tags" ToRole="postmetadata" />
+          <NavigationProperty Name="UserInfoes" Relationship="Self.UserInfo_Tags" FromRole="Tags" ToRole="UserInfo" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="NoOfPosts" Type="Int32" Nullable="false" />
+          <Property Name="NoOfTags" Type="Int32" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="isAuthor" Type="Boolean" Nullable="false" />
+          <Property Name="AdminId" Type="Int32" Nullable="false" />
+          <Property Name="isAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="LoginInfo" Relationship="Self.FK_UserInfo_LoginInfo" FromRole="UserInfo" ToRole="LoginInfo" />
+          <NavigationProperty Name="Tags" Relationship="Self.UserInfo_Tags" FromRole="UserInfo" ToRole="Tags" />
+        </EntityType>
+        <Association Name="FK_postmetadata_LoginInfo">
+          <End Role="LoginInfo" Type="Self.LoginInfo" Multiplicity="1" />
+          <End Role="postmetadata" Type="Self.postmetadata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginInfo">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="postmetadata">
+              <PropertyRef Name="authorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_LoginInfo">
+          <End Role="LoginInfo" Type="Self.LoginInfo" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginInfo">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PictureContent_PictureMetadata">
+          <End Role="PictureMetadata" Type="Self.PictureMetadata" Multiplicity="0..1" />
+          <End Role="PictureContent" Type="Self.PictureContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PictureMetadata">
+              <PropertyRef Name="PicId" />
+            </Principal>
+            <Dependent Role="PictureContent">
+              <PropertyRef Name="PicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PictureMetadata_postmetadata">
+          <End Role="postmetadata" Type="Self.postmetadata" Multiplicity="0..1" />
+          <End Role="PictureMetadata" Type="Self.PictureMetadata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="postmetadata">
+              <PropertyRef Name="postId" />
+            </Principal>
+            <Dependent Role="PictureMetadata">
+              <PropertyRef Name="AssociatedPostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_postContent_postmetadata">
+          <End Role="postmetadata" Type="Self.postmetadata" Multiplicity="1" />
+          <End Role="postContent" Type="Self.postContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="postmetadata">
+              <PropertyRef Name="postId" />
+            </Principal>
+            <Dependent Role="postContent">
+              <PropertyRef Name="postId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PostContent_Tags">
+          <End Role="postmetadata" Type="Self.postmetadata" Multiplicity="0..1" />
+          <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
+        </Association>
+        <Association Name="UserInfo_Tags">
+          <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DatabaseEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LoginInfoes" EntityType="Self.LoginInfo" />
+          <EntitySet Name="PictureContents" EntityType="Self.PictureContent" />
+          <EntitySet Name="PictureMetadatas" EntityType="Self.PictureMetadata" />
+          <EntitySet Name="postContents" EntityType="Self.postContent" />
+          <EntitySet Name="postmetadatas" EntityType="Self.postmetadata" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <EntitySet Name="UserInfoes" EntityType="Self.UserInfo" />
+          <AssociationSet Name="FK_postmetadata_LoginInfo" Association="Self.FK_postmetadata_LoginInfo">
+            <End Role="LoginInfo" EntitySet="LoginInfoes" />
+            <End Role="postmetadata" EntitySet="postmetadatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_LoginInfo" Association="Self.FK_UserInfo_LoginInfo">
+            <End Role="LoginInfo" EntitySet="LoginInfoes" />
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PictureContent_PictureMetadata" Association="Self.FK_PictureContent_PictureMetadata">
+            <End Role="PictureMetadata" EntitySet="PictureMetadatas" />
+            <End Role="PictureContent" EntitySet="PictureContents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PictureMetadata_postmetadata" Association="Self.FK_PictureMetadata_postmetadata">
+            <End Role="postmetadata" EntitySet="postmetadatas" />
+            <End Role="PictureMetadata" EntitySet="PictureMetadatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_postContent_postmetadata" Association="Self.FK_postContent_postmetadata">
+            <End Role="postmetadata" EntitySet="postmetadatas" />
+            <End Role="postContent" EntitySet="postContents" />
+          </AssociationSet>
+          <AssociationSet Name="PostContent_Tags" Association="Self.PostContent_Tags">
+            <End Role="postmetadata" EntitySet="postmetadatas" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="UserInfo_Tags" Association="Self.UserInfo_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities1">
+          <EntitySetMapping Name="LoginInfoes">
+            <EntityTypeMapping TypeName="DatabaseModel.LoginInfo">
+              <MappingFragment StoreEntitySet="LoginInfo">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="emailId" ColumnName="emailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PictureContents">
+            <EntityTypeMapping TypeName="DatabaseModel.PictureContent">
+              <MappingFragment StoreEntitySet="PictureContent">
+                <ScalarProperty Name="PicContentId" ColumnName="PicContentId" />
+                <ScalarProperty Name="PicId" ColumnName="PicId" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="PictureFileName" ColumnName="PictureFileName" />
+                <ScalarProperty Name="PicThumbnailPath" ColumnName="PicThumbnailPath" />
+                <ScalarProperty Name="takenBy" ColumnName="takenBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PictureMetadatas">
+            <EntityTypeMapping TypeName="DatabaseModel.PictureMetadata">
+              <MappingFragment StoreEntitySet="PictureMetadata">
+                <ScalarProperty Name="PicId" ColumnName="PicId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="fileSize" ColumnName="fileSize" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Format" ColumnName="Format" />
+                <ScalarProperty Name="picturePriority" ColumnName="picturePriority" />
+                <ScalarProperty Name="isPostBackground" ColumnName="isPostBackground" />
+                <ScalarProperty Name="isPostMainPicture" ColumnName="isPostMainPicture" />
+                <ScalarProperty Name="AssociatedPostId" ColumnName="AssociatedPostId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="postContents">
+            <EntityTypeMapping TypeName="DatabaseModel.postContent">
+              <MappingFragment StoreEntitySet="postContent">
+                <ScalarProperty Name="postContentId" ColumnName="postContentId" />
+                <ScalarProperty Name="postId" ColumnName="postId" />
+                <ScalarProperty Name="Heading" ColumnName="Heading" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="postmetadatas">
+            <EntityTypeMapping TypeName="DatabaseModel.postmetadata">
+              <MappingFragment StoreEntitySet="postmetadata">
+                <ScalarProperty Name="postId" ColumnName="postId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="noOfViews" ColumnName="noOfViews" />
+                <ScalarProperty Name="noOfLikes" ColumnName="noOfLikes" />
+                <ScalarProperty Name="hasPics" ColumnName="hasPics" />
+                <ScalarProperty Name="hasTags" ColumnName="hasTags" />
+                <ScalarProperty Name="noOfPics" ColumnName="noOfPics" />
+                <ScalarProperty Name="noOfTags" ColumnName="noOfTags" />
+                <ScalarProperty Name="isSponsoredPost" ColumnName="isSponsoredPost" />
+                <ScalarProperty Name="authorId" ColumnName="authorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="DatabaseModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="tagId" ColumnName="tagId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="isNewTag" ColumnName="isNewTag" />
+                <ScalarProperty Name="tagCounter" ColumnName="tagCounter" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfoes">
+            <EntityTypeMapping TypeName="DatabaseModel.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="NoOfPosts" ColumnName="NoOfPosts" />
+                <ScalarProperty Name="NoOfTags" ColumnName="NoOfTags" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="isAuthor" ColumnName="isAuthor" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="PostContent_Tags" TypeName="DatabaseModel.PostContent_Tags" StoreEntitySet="PostContent_Tags">
+            <EndProperty Name="postmetadata">
+              <ScalarProperty Name="postId" ColumnName="postId" />
+            </EndProperty>
+            <EndProperty Name="Tags">
+              <ScalarProperty Name="tagId" ColumnName="tagId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UserInfo_Tags" TypeName="DatabaseModel.UserInfo_Tags" StoreEntitySet="UserInfo_Tags">
+            <EndProperty Name="Tags">
+              <ScalarProperty Name="tagId" ColumnName="tagId" />
+            </EndProperty>
+            <EndProperty Name="UserInfo">
+              <ScalarProperty Name="userId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

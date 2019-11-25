@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="Billing.Presentation.exe" version="1.0.0.2" publicKeyToken="5f7ef928189b492b" language="neutral" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Billing.Presentation" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="Billing.Presentation.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Billing.BusinessLogic.dll" size="18944">
+      <assemblyIdentity name="Billing.BusinessLogic" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>kJWetGyKSMqckA0Uu5IpdicPj79Dog0cmS+fdz7gs/8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Billing.DatabaseLayer.dll" size="20480">
+      <assemblyIdentity name="Billing.DatabaseLayer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>xyZkhGJm0TiI99ZQhg8SK/ObnBSdUNcZtvkNYdqSSvQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Billing.Models.dll" size="13824">
+      <assemblyIdentity name="Billing.Models" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>K8sVomSLL4LorJ/3v64xF0c8p8OvGA2b4Yfy5n46gQE=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Billing.Presentation.exe" size="845768">
+      <assemblyIdentity name="Billing.Presentation" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>jH3UIpGUruuixE5k3IY0VX5paHkZDu5gYdoFgYb/EFI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EntityFramework.dll" size="5225168">
+      <assemblyIdentity name="EntityFramework" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>nCD7KthqdgsMauvZMByQCYkdAq4UcgqTkmwLU1uK0Js=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="EntityFramework.SqlServer.dll" size="622288">
+      <assemblyIdentity name="EntityFramework.SqlServer" version="6.0.0.0" publicKeyToken="B77A5C561934E089" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>4OEmw7inupUB0D+Z1Upcu9F0vOy2FwCYq0zBIZ8n+TM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GemBox.Document.dll" size="3069952">
+      <assemblyIdentity name="GemBox.Document" version="31.0.35.1000" publicKeyToken="B1B72C69714D4847" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>s8foq2R8CVFPfBkJNiApN152yReAQLtDqqUX052Nwd4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="GemBox.Spreadsheet.dll" size="3321344">
+      <assemblyIdentity name="GemBox.Spreadsheet" version="45.0.35.1000" publicKeyToken="B1B72C69714D4847" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>N4L7MyDpya3L95u4+6awfVU0mf8LNrF5R7RuAmBSlh0=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NLog.dll" size="816640">
+      <assemblyIdentity name="NLog" version="4.0.0.0" publicKeyToken="5120E14C03D0593C" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>zfBbVzHH5n2CGwzlcTfbWOvDQ1dUcEXw7FM1BnQ22Cc=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="Billing.Presentation.exe.config" size="1808">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>g+VeKiqftuB/XNMh6HmK0H5g2M4bx9edbEV31a0mxMY=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=VERIFONE\AabhasR1" issuerKeyHash="34f7c6629034c7a9170f7ae33b01fce7883000b6" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>4PPbie9V1MgcsImfWn+sfr7LUY08ozDmg/FUnkwYN8w=</DigestValue></Reference></SignedInfo><SignatureValue>ROGW6zYd4oFhkIRLMzkmMoDMqbSj8R4Y98vyg5WhlQ179Vp41VXXXLWaYvAetpEhH+RXjhYBBzRtSnfhKClppCv/JT2Bpji3PrmeGKuO4gwIB/FNb58qaY2Tk5j2Vmo0P9+dkOcscA6F6ZjXYMpi9WIJk/RkbFJId357+LTakVE=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>0xb8nR44BtXah5YMh+M+85pnKfdkr+bHhvUweb1Q9l84p05S3OBu6YOXv1gCfTvFbl9oeWEeuqpKhVCrvGaC9lqnbeFXqUdcEadnW31EBBfLmrE0BPS+IR6kMZ9mP9GC+C8SFauS3c3FhTjt5bTh834djs75i78g7X3zvy8cNr0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="cc37184c9e54f183e630a33c8d51cbbe7eac7f5a9f89b01cc8d455ef89dbf3e0" Description="" Url=""><as:assemblyIdentity name="Billing.Presentation.exe" version="1.0.0.2" publicKeyToken="5f7ef928189b492b" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=VERIFONE\AabhasR1</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>Sazjt1tUZ+VAk9y616yVXrqkvGUSTd3MHQ5Od+G0P24=</DigestValue></Reference></SignedInfo><SignatureValue>oIHdfjg2hXQ8Hwbbnc86mppTszoHrjRxRFaPkGLcUNc+tlNFqKvArA0dTJS70Qlan2u+EsN5Xc56+InRCSVBAvyG9isbUzvvoiIcsrCfTifjVoisL2oKZ0hUWeptEIktORUodGwrUXxPgaG4oKwD8rTGF6BEVSxuEmvMNKv8IkA=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>0xb8nR44BtXah5YMh+M+85pnKfdkr+bHhvUweb1Q9l84p05S3OBu6YOXv1gCfTvFbl9oeWEeuqpKhVCrvGaC9lqnbeFXqUdcEadnW31EBBfLmrE0BPS+IR6kMZ9mP9GC+C8SFauS3c3FhTjt5bTh834djs75i78g7X3zvy8cNr0=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB3TCCAUagAwIBAgIQGehaCKwm5LpKyACNdIYokDANBgkqhkiG9w0BAQsFADAtMSswKQYDVQQDHiIAVgBFAFIASQBGAE8ATgBFAFwAQQBhAGIAaABhAHMAUgAxMB4XDTE5MDcyNTEzNDg1NVoXDTIwMDcyNDE5NDg1NVowLTErMCkGA1UEAx4iAFYARQBSAEkARgBPAE4ARQBcAEEAYQBiAGgAYQBzAFIAMTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA0xb8nR44BtXah5YMh+M+85pnKfdkr+bHhvUweb1Q9l84p05S3OBu6YOXv1gCfTvFbl9oeWEeuqpKhVCrvGaC9lqnbeFXqUdcEadnW31EBBfLmrE0BPS+IR6kMZ9mP9GC+C8SFauS3c3FhTjt5bTh834djs75i78g7X3zvy8cNr0CAwEAATANBgkqhkiG9w0BAQsFAAOBgQBIActjI4TYvC3lqd4VrTh78jYaSQMqmxZ0zXRDjbBAh4IRQxRDx9Mjisn+spy5xw3am4v+Dm1+mmZNBn18bl5ncEiyNNew0U2Yzw4tq0GGmHHzUm1N1YiomUkM88QvkjmlkEwXNVPkU0JC1/eGLPwlvvLJfzmXeZ5EIv8Cg0JCpg==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

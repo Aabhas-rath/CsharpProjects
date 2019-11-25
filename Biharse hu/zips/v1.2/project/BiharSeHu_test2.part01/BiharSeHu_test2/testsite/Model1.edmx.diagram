@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9144ea53988646c7b5fd448b4043f9e4" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseModel.LoginInfo" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.PictureContent" Width="1.5" PointX="7.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.PictureMetadata" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.postContent" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.postmetadata" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Tag" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.UserInfo" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseModel.FK_postmetadata_LoginInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_UserInfo_LoginInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_PictureContent_PictureMetadata" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_PictureMetadata_postmetadata" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FK_postContent_postmetadata" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.PostContent_Tags" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.UserInfo_Tags" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

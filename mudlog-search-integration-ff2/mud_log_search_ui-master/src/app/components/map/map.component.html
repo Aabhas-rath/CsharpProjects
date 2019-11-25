@@ -1,0 +1,146 @@
+<div class="map" #mapElement></div>
+<div
+  #popupElement
+  class="popup chat-tail"
+  [ngClass]="{'show': data, 'visible': showPopupElement, 'extend': type === 'filtered'}"
+  (mouseover)="willBeHidden = false"
+  (mouseleave)="hidePopup()">
+  <ng-container *ngIf="data">
+    <div class="title">
+      {{data.name}}
+    </div>
+    <div class="field-group">
+      <div class="field">
+        API # {{data.api}}
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field">
+        {{data.place.location}}
+      </div>
+      <div class="field">
+        {{data.place.lat}}, {{data.place.lng}}
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field">
+        Operator: {{data.operator}}
+      </div>
+      <div class="field">
+        Drilled since: {{data.vintage}}
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field">
+        Phrase Score: {{data.phraseScore}}
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field">
+        Mud Logs:
+        <li *ngFor="let url of data.imageUrls;let i = index">
+          <button (click)="saveMudLog(url)" *ngIf="data.imageUrls.length === 1">
+            View
+          </button>
+          <button (click)="saveMudLog(url)" *ngIf="data.imageUrls.length > 1">
+            <span>#{{i+1}}</span>
+          </button>
+        </li>
+      </div>
+    </div>
+    
+    <div class="field-group grid" *ngIf="type === 'filtered' && data.phrase.phrases.length > 0">
+      <div class="field" *ngFor="let phrase of data.phrase.phrases">
+        <div class="value">
+          {{phrase.value}} ({{phrase.count}})
+        </div>
+        <div class="deep">
+          <mat-icon>
+            height
+          </mat-icon>
+          <span *ngFor="let depth of phrase.depth">
+            {{depth}}ft.
+          </span>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<app-modal class="legend-container" [ngClass]="{'extend': type === 'filtered'}">
+  <div class="header">
+    <div class="count-container">
+      <div class="label">
+        Total Wells
+      </div>
+      <div class="value">
+        {{this.wellList.length}}
+      </div>
+    </div>
+    <img src="/assets/img/tower.png"/>
+  </div>
+  <div class="body" *ngIf="type === 'filtered'">
+    <div class="legend-inner">
+      <div class="legend-inner-header">
+        <div class="title">
+          Phrases
+        </div>
+      </div>
+      <div class="legend-inner-body">
+        <ng-container *ngFor="let item of colorPalette">
+          <div class="dot" [ngStyle]="{'background-color': item.color}"></div>
+          <div class="label">{{item.name}}</div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="legend-inner">
+      <div class="legend-inner-header">
+        <div class="title">
+          Phrase Count
+        </div>
+        <mat-icon (click)="openSettings()">
+          settings
+        </mat-icon>
+      </div>
+      <div class="legend-inner-body">
+        <div class="dot border small"></div>
+        <div class="label">{{phraseCountFilter.small.min}} - {{phraseCountFilter.small.max}}</div>
+        <div class="dot border medium"></div>
+        <div class="label">{{phraseCountFilter.medium.min}} - {{phraseCountFilter.medium.max}}</div>
+        <div class="dot border large"></div>
+        <div class="label">{{phraseCountFilter.large.min}} - {{phraseCountFilter.large.max}}</div>
+        <div class="dot border x-large"></div>
+        <div class="label">{{phraseCountFilter.xLarge.min}} - {{phraseCountFilter.xLarge.max}}</div>
+      </div>
+    </div>
+  </div>
+  <app-phrase-settings
+    *ngIf="showSettingComponent"
+    (applySetting)="onApplySetting($event)"
+    (cancelSetting)="onCancelSetting()"></app-phrase-settings>
+</app-modal>
+<div class="controller-container">
+  <div class="circle-button" (click)="zoom('in')">
+    <mat-icon>add</mat-icon>
+  </div>
+  <div class="circle-button" (click)="zoom('out')">
+    <mat-icon>remove</mat-icon>
+  </div>
+  <div class="button-container">
+    <div class="image-button">
+      <img src="/assets/img/square.png"/>
+    </div>
+    <div class="image-button">
+      <img src="/assets/img/circle.png"/>
+    </div>
+    <div class="image-button">
+      <img src="/assets/img/bubble.png"/>
+    </div>
+  </div>
+</div>
+<div class="bubble-popup" #bubblePopupElement>
+  <div class="title">
+  </div>
+  <div class="img-container chat-tail">
+    <img src="/assets/img/tower.png"/>
+  </div>
+</div>

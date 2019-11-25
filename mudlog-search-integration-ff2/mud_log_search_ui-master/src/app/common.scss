@@ -1,0 +1,74 @@
+/* Anadarko Primary Colors */
+$science-blue: #006ed2;
+$endeavor: #0054a0;
+$prussian-blue: #002b52;
+$midnight: #00162a;
+$white: #ffffff;
+
+/* Anadarko Dark Theme Colors */
+$ebony-clay: #212936;
+$oxford-blue: #3e495b;
+$pale-sky: #626f86;
+$slate-gray: #64718a;
+$casper: #afbdd1;
+$iron: #e1e2e3;
+
+/* Tertiary Colors */
+$dodger-blue: #1992ff;
+$anakiwa: #a8deff;
+$lynch: #5f7782;
+$blizzard-blue: #bfdaf3;
+$ebony-clay-light: #2b3648;
+
+/* Grayscale Colors */
+$shark: #292b2c;
+$abbey: #464a4c;
+$nevada: #666768;
+$olso-gray: #939597;
+$bombay: #b3b4b5;
+$silver-sand: #b9bfc4;
+$porcelain: #eceeef;
+$athens-gray: #f7f7f9;
+
+/* Accent Colors */
+$limeade: #629700;
+$beryl-green: #dae4bf;
+$verdun-green: #364b00;
+$flush-orange: #ff8400;
+$frangipari: #ffdab3;
+$rose-of-sharon: #b25c00;
+$milano-red: #D61600;
+$mandys-pink: #f2b9b3;
+$red-berry: #950f00;
+
+/* All of theme colors */
+$blue: #006ed2;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #e83e8c;
+$red: $milano-red;
+$orange: #ff8400;
+$yellow: #ffd500;
+$green: #6e9700;
+$teal: #20c997;
+$cyan: #17a28b;
+$gray: $nevada;
+$gray-dark: $shark;
+$primary: $science-blue;
+$secondary: $iron;
+$success: $green;
+
+/* dot colors */
+$cut: #41A5FF;
+$flour: $yellow;
+$strain: $red;
+$cut-flour: $green;
+$cut-strain: $purple;
+$flour-strain: $pink;
+$cut-flour-strain: $teal;
+
+@mixin ellipsis($size) {
+  width: $size;
+  height: $size;
+  border-radius: $size / 2;
+}

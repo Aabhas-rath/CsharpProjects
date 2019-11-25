@@ -1,0 +1,89 @@
+@import "../../common";
+
+.table-container {
+  width: 100%;
+  height: 300px;
+  overflow: auto;
+  justify-content: space-between;
+  overflow-y: auto;
+
+  mat-cell {
+    padding: 3px 0px 3px 0px;
+  }
+  
+  .well-name {
+    color: $science-blue;
+  }
+  
+  .phrases-container {
+    // width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow-y: scroll;
+    font-size: 13px;
+    
+    .phrases {
+      display: flex;
+      align-items: center;
+      
+      .phrase {
+        margin: 10px 10px 10px 0;
+        width: max-content;
+        
+        .value, .deep {
+          line-height: 30px;
+        }
+        
+        .deep {
+          display: flex;
+          align-items: center;
+          
+          mat-icon {
+            font-size: 20px;
+            color: $nevada;
+            width: 20px;
+            height: 20px;
+          }
+          
+          span {
+            font-size: 13px;
+          }
+        }
+      }
+    } 
+  }
+
+  .view-logs {
+    overflow-x: auto;
+    li {
+      list-style-type:none;
+      margin-bottom: 5px;
+      button {
+        color: $science-blue;
+        white-space: nowrap;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+    .mat-column-name {
+      flex-grow: 0.7;
+    }
+    
+    .mat-column-vintage {
+      flex-grow: 0.5;
+    }
+    
+    .mat-column-phrases {
+      flex-grow: 1.8;
+    }
+    
+    .mat-row.focus {
+      background-color: rgba($science-blue, .15);
+    }
+  }
+}

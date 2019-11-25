@@ -1,0 +1,23 @@
+@import "../../common";
+
+.side-toggle-button {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  cursor: pointer;
+  width: 16px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background-color: $olso-gray;
+  color: $white;
+  border-radius: 0 5px 5px 0;
+  z-index: 10;
+  
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+}
+

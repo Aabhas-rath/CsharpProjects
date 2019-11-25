@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/bootstrapCss")
+    @Styles.Render("~/css")
+    @Styles.Render("~/demo")
+    @Scripts.Render("~/jquery")
+    @Scripts.Render("~/bootstrap")
+    @Scripts.Render("~/jarllax")
+    @Scripts.Render("~/parallax")
+</head>
+<body>
+    <div>
+        @*<div>@{Html.Partial("_navbar");}</div>*@
+        <div class="parallax-window" data-parallax="scroll"  data-speed="0.1" data-image-src="../../Images/BackgroundImages/StaticContent/image3.jpg">
+            <div class="demo-table" style="z-index:3">
+                <div class="demo-table-cell" style="z-index:2">
+                    <h1 style="z-index:auto"> Bihar se hu</h1style="z-index:>
+                    <h2 style="z-index:auto">< some text about site></h2style="z-index:auto">
+
+                    <br>
+                </div>
+                <div style="z-index:auto">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <div class="demo-gap">
+            Aabhas
+        </div>
+    </div>
+</body>
+</html>
