@@ -2,7 +2,7 @@
 using Models.Interfaces;
 namespace Repository.Interfaces
 {
-    public interface IModelRepository : ICrudRepository<Models.Model,IModel>
+    public interface IModelRepository : IRepository<Models.Model>
     {
     }
 }

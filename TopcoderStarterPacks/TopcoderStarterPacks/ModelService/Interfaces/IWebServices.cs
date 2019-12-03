@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace ModelServices.Interfaces
 {
-    interface IWebServices<T,IT> where T : class,IT, new() where IT : IModel
+    interface IWebServices<T> where T : class, new() 
     {
         IEnumerable<T> Get();
         T Get(int id);
-        int Post(IT obj);
-        void Put(int id, IT obj);
+        int Post(T obj);
+        void Put(int id, T obj);
         bool Delete(int id);
-        bool Delete(IT obj);
+        bool Delete(T obj);
     }
 }

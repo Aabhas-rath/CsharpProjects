@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace ModelServices
 {
-    public class ModelService : IWebServices<Models.Model,IModel>
+    public class ModelService : IWebServices<Models.Model>
     {
         private ModelRepository repos;
         public ModelService(IModelRepository repository)
@@ -18,12 +18,28 @@ namespace ModelServices
 
         public bool Delete(int id)
         {
-           return repos.DeleteById(id);
+            try
+            {
+                repos.Remove(repos.Get(id));
+            }
+            catch (NullReferenceException e)
+            {
+                return false;
+            }
+            return true;
         }
 
-        public bool Delete(IModel obj)
+        public bool Delete(Model obj)
         {
-            return repos.Delete(obj);
+            try
+            {
+                repos.Remove(obj);
+            }
+            catch (NullReferenceException e)
+            {
+                return false;
+            }
+            return true;
         }
 
         public IEnumerable<Model> Get()
@@ -36,14 +52,16 @@ namespace ModelServices
             return repos.Get(id);
         }
 
-        public int Post(IModel obj)
+        public int Post(Model obj)
         {
-            return repos.Post(obj);
+            repos.Add(obj);
+            return obj.Id;
         }
 
         public void Put(int id,IModel obj)
         {
-            repos.Put(id, obj);
+            var sobj = repos.Get(id);
+
         }
     }
 }

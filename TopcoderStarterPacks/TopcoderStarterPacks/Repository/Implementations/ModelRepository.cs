@@ -4,7 +4,7 @@ using Models.Interfaces;
 
 namespace Repository.Implementations
 {
-    public class ModelRepository : CRUDRepository<Model,IModel>, IModelRepository
+    public class ModelRepository : Repository<Model>, IModelRepository
     {
         public ModelRepository(string connectionString) : base(connectionString)
         {

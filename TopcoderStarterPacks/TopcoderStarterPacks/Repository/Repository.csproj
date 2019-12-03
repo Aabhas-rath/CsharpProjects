@@ -91,12 +91,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Domain\Author.cs" />
+    <Compile Include="Core\Domain\Course.cs" />
+    <Compile Include="Core\Domain\Cover.cs" />
+    <Compile Include="Core\Domain\Tag.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
+    <Compile Include="Core\Repositories\IAuthorRepository.cs" />
+    <Compile Include="Core\Repositories\ICourseRepository.cs" />
+    <Compile Include="Core\Repositories\IRepository.cs" />
     <Compile Include="DatabaseContext.cs" />
-    <Compile Include="Implementations\CRUDRepository.cs" />
+    <Compile Include="Implementations\Repository.cs" />
     <Compile Include="Implementations\ModelRepository.cs" />
-    <Compile Include="Interfaces\ICrudRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IModelRepository.cs" />
     <Compile Include="Interfaces\IRepositoryConnector.cs" />
+    <Compile Include="Persistence\EntityConfigurations\CourseConfiguration.cs" />
+    <Compile Include="Persistence\PlutoContext.cs" />
+    <Compile Include="Persistence\Repositories\AuthorRepository.cs" />
+    <Compile Include="Persistence\Repositories\CourseRepository.cs" />
+    <Compile Include="Persistence\Repositories\Repository.cs" />
+    <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@ using System.Data.Entity;
 namespace Repository
 {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    internal class DatabaseContext<T,IT>: DbContext where T : class, IT, new()
+    public class DatabaseContext<T,IT>: DbContext where T : class, IT, new()
     {
         public DbSet<T> Models { get; set; }
 
