@@ -24,7 +24,7 @@ namespace Website.Controllers
         public ActionResult GetImage(int id)
         {
             var path = _websiteImageService.PathOfImage(id);
-            return base.File(path, "image/jpeg");
+            return base.File(path, "image/jpeg|image/png");
         }
     }
 }

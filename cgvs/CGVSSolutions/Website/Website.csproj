@@ -160,6 +160,18 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fixed.css" />
+    <Content Include="Content\Images\Aabhas.jpg" />
+    <Content Include="Content\Images\definationOfYear.jpg" />
+    <Content Include="Content\Images\HistoryOfTheUniverse.jpg" />
+    <Content Include="Content\Images\icon.png" />
+    <Content Include="Content\Images\landingPageImage.jpg" />
+    <Content Include="Content\Images\landingPageImage1.jpg" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\mathematics.jfif" />
+    <Content Include="Content\Images\Physics.jpg" />
+    <Content Include="Content\Images\Physics1.jpg" />
+    <Content Include="Content\Images\physicsOfRollingApple.jpg" />
     <Content Include="Content\Style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -301,6 +313,9 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Home\home.cshtml" />
+    <Content Include="Views\Home\aboutUs.cshtml" />
+    <Content Include="Views\Shared\comingSoon.cshtml" />
+    <Content Include="Views\Home\activities.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

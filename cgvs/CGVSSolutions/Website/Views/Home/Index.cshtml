@@ -1,20 +1,43 @@
 ﻿<!-- body Start-->
 <!--Navigation start-->
 <nav class="navbar navbar-expand-md bg-dark fixed-top">
-    <a class="navbar-brand" href="#" name="@ViewBag.Title"><img class="img-thumbnail" src="./images/getimage/3" /><span class="navbar-text navbar-light">   @ViewBag.WebsiteName</span></a>
+    <a class="navbar-brand text-light" href="#" name="@ViewBag.Title">
+        <img class="img-thumbnail" src="./images/getimage/3" />
+        @ViewBag.WebsiteName
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-        <span class="navbar-toggler-icon">Menu</span>
+        <span class="navbar-toggler-icon navbar-light">Menu</span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link text-light" href="#home">Home</a>
+                <a class="nav-link text-light" href="#">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="#aboutUs">About us</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link text-light dropdown-toggle" href="#" id="AboutDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    About
+                </a>
+                <div class="dropdown-menu" aria-labelledby="AboutDropdown">
+                    <a class="dropdown-item" href="#introduction">Introduction</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#ideology">Ideology</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#family">Family</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#presidents">Presidents</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" href="#activities">Activities</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link text-light dropdown-toggle" href="#" id="ActivitiesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Activities
+                </a>
+                <div class="dropdown-menu" aria-labelledby="ActivitiesDropdown">
+                    <a class="dropdown-item" href="#blogs">Blogs of Interest</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#discussions">Discussuins</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#quiz">Quiz</a>
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-light" href="#whatsNew">What's New</a>
@@ -28,54 +51,54 @@
             <li class="nav-item">
                 <a class="nav-link text-light" href="#contactUs">Contact us</a>
             </li>
-            @*<li class="nav-item">
-                    <a class="nav-link" href="#home">Home</a>
-                </li>*@
         </ul>
     </div>
 </nav>
 <!--Navigation end-->
 <!--Start Home-->
-<div id="home">
+<div id="home" style="height: 100%;padding-top: 25px;">
     @Html.Partial("home")
 </div>
 <!--End Home-->
+<br />
 <!--About us Start-->
 <div id="aboutUs" class="offset">
-    @* @Html.Partial("aboutUs");*@
+    @Html.Partial("aboutUs");
 </div>
 <!--About us End-->
+<br />
 <!--activities Start-->
 <div id="activities" class="offset">
-    @*  @Html.Partial("activities");*@
+      @Html.Partial("activities");
 </div>
 <!--activities End-->
+<br />
 <!--whatsNew Start-->
 <div id="whatsNew" class="offset">
     @* @Html.Partial("whatsNew");*@
 </div>
 <!--whatsNew End-->
+<br />
 <!--gallery Start-->
 <div id="gallery" class="offset">
     @* @Html.Partial("gallery");*@
 </div>
 <!--gallery End-->
+<br />
 <!--Downloads Start-->
 <div id="downloads" class="offset">
     @*  @Html.Partial("downloads");*@
 </div>
 <!--Downloads End-->
+<br />
 <!--Contact us start-->
 <div id="contactUs" class="offset">
     @* @Html.Partial("contactUs");*@
 </div>
 <!--Contact us end-->
+<br />
 <!-- body End-->
 <hr />
-<footer>
-    <p>&copy; @DateTime.Now.Year</p>
-</footer>
-
 
 
 
