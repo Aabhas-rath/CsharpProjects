@@ -10,10 +10,9 @@ namespace Website.Controllers
         private ImageService _websiteImageService = null;
         public ImagesController()
         {
-            WebConfigurationManager webConfiguration = new WebConfigurationManager();
+            WebConfigurationManager webConfiguration = WebConfigurationManager.Instance;
 
             _websiteImageService = new ImageService(new WebSiteImageGetBehaviour(webConfiguration.ConnectionString));
-            //    images = new ImageRepository(webConfiguration.ConnectionString);
         }
         // GET: Image
         public ActionResult Index()
@@ -26,5 +25,7 @@ namespace Website.Controllers
             var path = _websiteImageService.PathOfImage(id);
             return base.File(path, "image/jpeg|image/png");
         }
+       
+
     }
 }

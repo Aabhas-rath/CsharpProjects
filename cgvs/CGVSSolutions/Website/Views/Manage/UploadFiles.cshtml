@@ -1,0 +1,31 @@
+﻿@model  Website.Models.AlbumUploadModel
+
+<div>
+    <div class="container-lg">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 align-content-md-center">
+                <h2>UploadFile</h2>
+                @using (Html.BeginForm("UploadFiles", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.AlbumName,"Album name",new { })
+                        @Html.TextBoxFor(model => model.AlbumName)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Files,"Uploaded Files")
+                        @{ 
+                            var filenames = (Model.Files == null || Model.Files.Count == 0) ? string.Empty : string.Join(", ", Model.Files.Select(m => m.FileName).ToArray());
+                        }
+                        @Html.TextAreaFor(model => filenames , new { @class = "form-control", row = 3, @readonly = true }) @Html.TextBoxFor(model=>model.Files,"image/jpeg|png", new { type = "file", @class = "form-control-file", @multiple = true })
+                        <br />
+                        <input type="submit" value="Upload" />
+                        @ViewBag.Message
+                    </div>
+                }
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+</div>

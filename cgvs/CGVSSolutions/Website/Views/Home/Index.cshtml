@@ -1,8 +1,59 @@
 ﻿<!-- body Start-->
 <!--Navigation start-->
+<script>
+    function ProcessEachAlbum(albumId) {
+        if ($("#gallery" + albumId).length == 0) {
+            var galleryCarousel = "<div id=\"gallery" + albumId + "\" class=\"carousel slide\" data-ride=\"carousel\"><ol id=\"carouselIndicators" + albumId + "\" class=\"carousel-indicators\"></ol><div id=\"carouselInner" + albumId + "\" class=\"carousel-inner my-inner\"></div>" +
+                    "<a class=\"carousel-control-prev\" href=\"#gallery" + albumId + "\" role=\"button\" data-slide=\"prev\"><span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span> <span class=\"sr-only\">Previous</span>" +
+                "</a><a class=\"carousel-control-next\" href=\"#gallery" + albumId + "\" role=\"button\" data-slide=\"next\"><span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span><span class=\"sr-only\">Next</span></a></div> <br/><br/>";
+            $("#galleryStart").append(galleryCarousel);
+            var geturl = "@Url.Action("GetfirstfourImages","Album")/" + albumId;
+            var dataTarget = "data-target=\"#gallery" + albumId;
+            $.getJSON(geturl, function (imageIdArray, status) {
+                if (status == "success") {
+                    var carouselIndicatorsList = [];
+                    var carouselList = [];
+                    var index = 1;
+                    carouselIndicatorsList.push("<li" + dataTarget + "\" data-slide-to=\"0\" class=\"active\"></li>");
+                    imageIdArray.forEach(function (imageId, imageIndex) {
+                        carouselIndicatorsList.push("<li " + dataTarget + "\" data-slide-to=" + index++ + "></li>");
+                        if (imageIndex != 0)
+                            carouselList.push("<div class=\"carousel-item\"><img class=\"d-block w-100 albumCarouselImage\" src=\"@Url.Action("getimage","images")/" + imageId + "\" alt=" + imageIndex + "></div>");
+                        else
+                            carouselList.push("null");
+                    });
+                    carouselList[0] = "<div class=\"carousel-item active\"><img class=\"d-block w-100 albumCarouselImage\" src=\"@Url.Action("getimage","images")/"+imageIdArray[0]+" alt=\"" + imageIdArray[0] + "\"></div>";
+                    $("#carouselIndicators" + albumId).append(carouselIndicatorsList.join(''));
+                    $("#carouselInner" + albumId).append(carouselList.join(''));
+                }
+                else {
+                    $("#galleryStart").remove("#gallery" + albumId).append("@Html.Partial("comingSoon").ToString()");
+                }
+            });
+        }
+    }
+    function loadAlbums(AlbumIdArray, status) {
+        if (status == "success") {
+            AlbumIdArray.forEach(ProcessEachAlbum);
+        }
+        else {
+            $("#galleryStart").append("@Html.Partial("comingSoon")");
+        }
+    }
+    function call() {
+        if ($("#galleryStart").length == 0) {
+            $.get("@Url.Action("GetAll","Album")",loadAlbums);
+        }
+    }
+//    $(document).ready(function(){
+   
+//   $('#content').load("new.html");
+
+//});
+</script>
 <nav class="navbar navbar-expand-md bg-dark fixed-top">
     <a class="navbar-brand text-light" href="#" name="@ViewBag.Title">
-        <img class="img-thumbnail" src="./images/getimage/3" />
+        <img class="img-thumbnail" src="/images/getimage/3" />
         @ViewBag.WebsiteName
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
@@ -43,7 +94,7 @@
                 <a class="nav-link text-light" href="#whatsNew">What's New</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-light" href="#gallery">Gallery</a>
+                <a class="nav-link text-light" href="#gallery" onclick="call()">Gallery</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-light" href="#downloads">Downloadables</a>
@@ -69,7 +120,7 @@
 <br />
 <!--activities Start-->
 <div id="activities" class="offset">
-      @Html.Partial("activities");
+    @Html.Partial("activities");
 </div>
 <!--activities End-->
 <br />
@@ -81,7 +132,7 @@
 <br />
 <!--gallery Start-->
 <div id="gallery" class="offset">
-    @* @Html.Partial("gallery");*@
+    @Html.Partial("gallery");
 </div>
 <!--gallery End-->
 <br />

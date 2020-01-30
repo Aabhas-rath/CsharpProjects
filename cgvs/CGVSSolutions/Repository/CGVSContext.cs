@@ -6,7 +6,7 @@ namespace Repository
 {
     public class CGVSContext : DbContext
     {
-        public CGVSContext():base("name = CGVSCS")
+        public CGVSContext():base("Data Source=.;Initial Catalog=CGVS;Integrated Security=True;Encrypt=True;TrustServerCertificate=True")
         {
             Configuration.LazyLoadingEnabled = false;
         }
@@ -14,7 +14,8 @@ namespace Repository
         {
             Configuration.LazyLoadingEnabled = false;
         }
-        public virtual DbSet<Images> Images { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<Album> Albums { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

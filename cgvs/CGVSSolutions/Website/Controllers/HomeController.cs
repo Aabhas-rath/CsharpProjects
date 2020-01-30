@@ -10,7 +10,7 @@ namespace Website.Controllers
         private ImageService _websiteImageService = null;
         public HomeController()
         {
-            WebConfigurationManager webConfiguration = new WebConfigurationManager();
+            WebConfigurationManager webConfiguration = WebConfigurationManager.Instance;
 
             _websiteImageService = new ImageService(new WebSiteImageGetBehaviour(webConfiguration.ConnectionString));
         }
@@ -20,7 +20,7 @@ namespace Website.Controllers
             //TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
             //var date = new DateTime(2016, 11, 23);
             //ViewBag.timeinfo = TimeZoneInfo.ConvertTimeToUtc(date,timeZoneInfo);
-
+            
             return View();
         }
 

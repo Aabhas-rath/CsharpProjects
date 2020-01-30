@@ -3,7 +3,7 @@ using Services.Core.Behaviours;
 
 namespace Services.ServiceComponents.ImageBehaviours
 {
-    public interface IImagePostBehaviour:IPostBehaviour<Images>
+    public interface IImagePostBehaviour:IPostBehaviour<Image>
     {
 
     }

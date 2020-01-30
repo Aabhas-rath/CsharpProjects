@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Repository.Persistance.Repositories
 {
-    public class ImageRepository : Repository<Images>, IImageRepository
+    public class ImageRepository : Repository<Image>, IImageRepository
     {
         public ImageRepository(CGVSContext context) : base(context)
         {

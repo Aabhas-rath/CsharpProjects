@@ -19,17 +19,17 @@ namespace Services.ServiceComponents.ImageTypedBehaviour
         {
             _repository = new RepositoryWorker(DBCS);
         }
-        public IEnumerable<Images> Find(Expression<Func<Images, bool>> predicate)
+        public IEnumerable<Image> Find(Expression<Func<Image, bool>> predicate)
         {
             return _repository.Images.Find(predicate);
         }
 
-        public Images Get(int id)
+        public Image Get(int id)
         {
             return _repository.Images.Get(id);
         }
 
-        public IEnumerable<Images> GetAll()
+        public IEnumerable<Image> GetAll()
         {
             return _repository.Images.GetAll();
         }

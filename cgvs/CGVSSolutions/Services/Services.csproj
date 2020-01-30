@@ -41,16 +41,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlbumService.cs" />
     <Compile Include="ImageService.cs" />
     <Compile Include="Core\Behaviours\IDeleteBehaviour.cs" />
     <Compile Include="Core\Behaviours\IGetBehaviour.cs" />
     <Compile Include="Core\Behaviours\IPostBehaviour.cs" />
-    <Compile Include="Core\Behaviours\IUpdateable.cs" />
+    <Compile Include="Core\Behaviours\IUpdateBehaviour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceComponents\AlbumBehaviours\IAlbumDeleteBehaviour.cs" />
+    <Compile Include="ServiceComponents\AlbumBehaviours\IAlbumGetBehaviour.cs" />
+    <Compile Include="ServiceComponents\AlbumBehaviours\IAlbumPostBehaviour.cs" />
+    <Compile Include="ServiceComponents\AlbumBehaviours\IAlbumUpdateBehaviour.cs" />
+    <Compile Include="ServiceComponents\AlbumsTypedBehaviour\WebsiteAlbumDeleteBehaviour.cs" />
+    <Compile Include="ServiceComponents\AlbumsTypedBehaviour\WebsiteAlbumGetBehaviour.cs" />
+    <Compile Include="ServiceComponents\AlbumsTypedBehaviour\WebsiteAlbumPostBehaviour.cs" />
+    <Compile Include="ServiceComponents\AlbumsTypedBehaviour\WebsiteAlbumUpdateBehaviour.cs" />
     <Compile Include="ServiceComponents\ImageBehaviours\IImageDeleteBehaviour.cs" />
     <Compile Include="ServiceComponents\ImageBehaviours\IImageGetBehaviour.cs" />
     <Compile Include="ServiceComponents\ImageBehaviours\IImagePostBehaviour.cs" />
     <Compile Include="ServiceComponents\ImagesTypedBehaviour\WebSiteImageGetBehaviour.cs" />
+    <Compile Include="ServiceComponents\ServiceExceptions\AlbumNotFoundException.cs" />
+    <Compile Include="ServiceComponents\ServiceExceptions\ImageNotFoundException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\TopcoderStarterPacks\TopcoderStarterPacks\Models\Models.csproj">
@@ -62,5 +73,6 @@
       <Name>Repository</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

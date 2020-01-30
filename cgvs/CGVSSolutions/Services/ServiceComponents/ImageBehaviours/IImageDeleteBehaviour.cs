@@ -3,7 +3,7 @@ using Services.Core.Behaviours;
 
 namespace Services.ServiceComponents.ImageBehaviours
 {
-    public interface IImageDeleteBehaviour : IDeleteBehaviour<Images>
+    public interface IImageDeleteBehaviour : IDeleteBehaviour<Image>
     {
     }
 }

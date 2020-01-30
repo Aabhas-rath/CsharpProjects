@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Repository.Core.Repositories
 {
-    public interface IImageRepository : IRepository<Images>
+    public interface IImageRepository : IRepository<Image>
     {
         string GetPathOfImage(int id);
         string GetPathOfImage(int id, int Version);

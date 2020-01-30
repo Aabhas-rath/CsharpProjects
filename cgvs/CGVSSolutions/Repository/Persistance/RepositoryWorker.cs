@@ -11,14 +11,17 @@ namespace Repository.Persistance
         {
             context = new CGVSContext();
             Images = new ImageRepository(context);
+            Albums = new AlbumRepository(context);
         }
         public RepositoryWorker( string DBCS)
         {
             context = new CGVSContext(DBCS);
             Images = new ImageRepository(context);
+            Albums = new AlbumRepository(context);
         }
 
         public ImageRepository Images { get; private set; }
+        public AlbumRepository Albums { get; set; }
 
         public int Complete()
         {
