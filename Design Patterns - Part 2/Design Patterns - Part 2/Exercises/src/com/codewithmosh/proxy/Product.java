@@ -1,6 +1,8 @@
 package com.codewithmosh.proxy;
 
-public class Product {
+import com.codewithmosh.proxy.implimentation.IProduct;
+
+public class Product implements IProduct {
   private int id;
   private String name;
 

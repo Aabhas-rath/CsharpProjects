@@ -1,10 +1,10 @@
 ﻿@model  Website.Models.AlbumUploadModel
 
 <div>
-    <div class="container-lg">
+    <div class="container-sm">
         <div class="row">
-            <div class="col-1"></div>
-            <div class="col-10 align-content-md-center">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 align-content-md-center" style="color:ActiveCaption">
                 <h2>UploadFile</h2>
                 @using (Html.BeginForm("UploadFiles", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
@@ -25,7 +25,7 @@
                     </div>
                 }
             </div>
-            <div class="col-1"></div>
+            <div class="col-sm-1"></div>
         </div>
     </div>
 </div>

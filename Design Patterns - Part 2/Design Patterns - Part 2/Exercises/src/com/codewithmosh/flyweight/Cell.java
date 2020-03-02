@@ -1,11 +1,13 @@
 package com.codewithmosh.flyweight;
 
+import com.codewithmosh.flyweight.implimentation.Font;
+
 public class Cell {
   private final int row;
   private final int column;
   private String content;
-  private String fontFamily;
-  private int fontSize;
+  private Font font;
+
   private boolean isBold;
 
   public Cell(int row, int column) {
@@ -21,22 +23,6 @@ public class Cell {
     this.content = content;
   }
 
-  public String getFontFamily() {
-    return fontFamily;
-  }
-
-  public void setFontFamily(String fontFamily) {
-    this.fontFamily = fontFamily;
-  }
-
-  public int getFontSize() {
-    return fontSize;
-  }
-
-  public void setFontSize(int fontSize) {
-    this.fontSize = fontSize;
-  }
-
   public boolean isBold() {
     return isBold;
   }
@@ -45,7 +31,14 @@ public class Cell {
     isBold = bold;
   }
 
+  public Font getFont() {
+    return font;
+  }
+
+  public void setFont(Font font) {
+    this.font = font;
+  }
   public void render() {
-    System.out.printf("(%d, %d): %s [%s]\n", row, column, content, fontFamily);
+    System.out.printf("(%d, %d): %s [%s]\n", row, column, content, font.getFontFamily());
   }
 }

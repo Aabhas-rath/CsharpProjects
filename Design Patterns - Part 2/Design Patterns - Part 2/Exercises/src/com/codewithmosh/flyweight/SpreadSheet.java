@@ -1,5 +1,7 @@
 package com.codewithmosh.flyweight;
 
+import com.codewithmosh.flyweight.implimentation.FontFactory;
+
 public class SpreadSheet {
   private final int MAX_ROWS = 3;
   private final int MAX_COLS = 3;
@@ -11,7 +13,7 @@ public class SpreadSheet {
   private final boolean isBold = false;
 
   private Cell[][] cells = new Cell[MAX_ROWS][MAX_COLS];
-
+  private FontFactory font = new FontFactory();
   public SpreadSheet() {
     generateCells();
   }
@@ -24,9 +26,8 @@ public class SpreadSheet {
 
   public void setFontFamily(int row, int col, String fontFamily) {
     ensureCellExists(row, col);
-
     var cell = cells[row][col];
-    cells[row][col].setFontFamily(fontFamily);
+    cells[row][col].setFont(font.getFont(fontFamily));
   }
 
   private void ensureCellExists(int row, int col) {
@@ -41,7 +42,7 @@ public class SpreadSheet {
     for (var row = 0; row < MAX_ROWS; row++)
       for (var col = 0; col < MAX_COLS; col++) {
         var cell = new Cell(row, col);
-        cell.setFontFamily(fontFamily);
+        cell.setFont(font.getFont(fontFamily));
         cells[row][col] = cell;
       }
   }

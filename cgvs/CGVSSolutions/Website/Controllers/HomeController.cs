@@ -37,5 +37,10 @@ namespace Website.Controllers
 
             return View();
         }
+
+        public ActionResult comingSoon()
+        {
+            return PartialView("comingSoon");
+        }
     }
 }
