@@ -53,7 +53,7 @@
         else {
             $.ajax({
                         type: "GET",
-                        url: "@Url.Action("commingSoon","Home")",
+                        url: '@Url.Action("commingSoon","Home")',
                         dataType: "html",
                         success: function (response) { $("#galleryStart").html(response); },
                         failure: function (response) { $("#galleryStart").append("Comming Soon. please check back later"); }
@@ -62,7 +62,7 @@
     };
     function call() {
         if ($("#galleryStart").children().length == 0) {
-            $.get("@Url.Action("GetAll","Album")",loadAlbums);
+            $.get('@Url.Action("GetAll","Album")',loadAlbums);
         }
     };
     function removeDivandDisableNav(divId) {
@@ -76,13 +76,40 @@
                 navElement.remove();
         }
     };
-    window.onload = function() {
+    var modalfunc = function (e) { $('#manageAlbums .modal-body').html(''); };
+    var toggleAlbumManager = function () {
+        $.get('@Url.Action("UploadFiles","Manage")', function (data) { $('#manageAlbums .modal-body').html(data); })
+        $('#manageAlbums').modal('show');
+    };
+    $('#manageAlbums').on('hidden.bs.modal', modalfunc);
+
+    window.onload = function () {
         var linkElements = $("a[class='nav-link text-light']");
         $.each(linkElements, function (index, element) {
             if (element.getAttribute("href") != "#")
             removeDivandDisableNav(element.attributes["href"].value);
         });
+
+        $('#CreateAlbum').submit(function (e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+            url: this.attr('action'),
+            type: "POST",
+            dataType: "html",
+            contentType: "multipart/form-data",
+            data: formData,
+            processData: false,
+            success: function (result) {
+                $('#result').html(result);
+            },
+            error: function (result) {
+
+            }
+        });
+    });
     };
+
 </script>
 <nav class="navbar navbar-expand-sm bg-dark fixed-top">
     <a class="navbar-brand text-light" href="#" name="@ViewBag.Title">
@@ -192,12 +219,32 @@
     @* @Html.Partial("contactUs");*@
 </div>
 <!--Contact us end-->
-
-<br />
-
 <!-- body End-->
-<hr />
 
+<div id="modalLoader" class="align-content-center" width="100%">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#manageAlbums" onclick="toggleAlbumManager()">
+        Launch Album Manager.
+    </button>
+
+    <div class="modal fade" id="manageAlbums" tabindex="-1" role="dialog" aria-labelledby="manageAlbumsLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="manageAlbumsLabel">Album Manager</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary align-self-center">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 
 

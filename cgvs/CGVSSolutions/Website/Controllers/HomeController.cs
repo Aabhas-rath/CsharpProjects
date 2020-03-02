@@ -5,6 +5,8 @@ using System.Web.Mvc;
 
 namespace Website.Controllers
 {
+
+    [HandleError]
     public class HomeController : Controller
     {
         private ImageService _websiteImageService = null;

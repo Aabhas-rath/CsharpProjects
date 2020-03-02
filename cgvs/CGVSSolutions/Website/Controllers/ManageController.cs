@@ -3,6 +3,7 @@ using Website.Models;
 
 namespace Website.Controllers
 {
+    [HandleError]
     public class ManageController : Controller
     {
         AlbumController albumController = null;
@@ -22,7 +23,7 @@ namespace Website.Controllers
         public ActionResult UploadFiles()
         {
             AlbumUploadModel Albums = new AlbumUploadModel();
-            return View(Albums);
+            return PartialView(Albums);
         }
         [HttpPost]
         public ActionResult UploadFiles(AlbumUploadModel Album)
