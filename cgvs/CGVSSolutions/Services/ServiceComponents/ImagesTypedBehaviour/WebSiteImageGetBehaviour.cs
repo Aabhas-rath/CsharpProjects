@@ -13,11 +13,11 @@ namespace Services.ServiceComponents.ImageTypedBehaviour
 
         public WebSiteImageGetBehaviour()
         {
-            _repository = new RepositoryWorker();
+            _repository = RepositoryWorker.Instance();
         }
         public WebSiteImageGetBehaviour(string DBCS)
         {
-            _repository = new RepositoryWorker(DBCS);
+            _repository = RepositoryWorker.Instance(DBCS);
         }
         public IEnumerable<Image> Find(Expression<Func<Image, bool>> predicate)
         {

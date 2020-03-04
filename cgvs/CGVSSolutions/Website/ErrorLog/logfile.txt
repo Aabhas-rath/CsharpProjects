@@ -1,0 +1,85 @@
+2020-03-04 14:22:07,984 [8] DEBUG Website.Controllers.HomeController [(null)] - loading view 
+2020-03-04 14:22:15,972 [9] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 3 from path \Content\Images\icon.png.
+2020-03-04 14:22:16,144 [8] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 4 from path \Content\Images\landingPageImage.jpg.
+2020-03-04 14:22:16,251 [10] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 6 from path \Content\Images\aboutUs.jpg.
+2020-03-04 14:22:16,302 [11] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 7 from path \Content\Images\clockBckgrnd.png.
+2020-03-04 14:22:16,335 [12] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 9 from path \Content\Images\Physics.jpg.
+2020-03-04 15:53:31,727 [5] DEBUG Website.Controllers.HomeController [(null)] - loading view 
+2020-03-04 15:59:15,100 [10] DEBUG Website.Controllers.HomeController [(null)] - loading view 
+2020-03-04 16:00:56,443 [10] DEBUG Website.Controllers.HomeController [(null)] - loading view 
+2020-03-04 16:21:11,672 [5] DEBUG Website.Controllers.HomeController [(null)] - loading view 
+2020-03-04 16:21:15,165 [6] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 3 from path \Content\Images\icon.png.
+2020-03-04 16:21:15,225 [15] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 7 from path \Content\Images\clockBckgrnd.png.
+2020-03-04 16:21:15,302 [7] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 4 from path \Content\Images\landingPageImage.jpg.
+2020-03-04 16:21:15,383 [5] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 6 from path \Content\Images\aboutUs.jpg.
+2020-03-04 16:21:15,429 [16] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 9 from path \Content\Images\Physics.jpg.
+2020-03-04 16:21:24,930 [5] DEBUG Website.Controllers.AlbumController [(null)] - getting all albumIds.
+2020-03-04 16:21:38,026 [5] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 2
+2020-03-04 16:21:42,106 [7] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 3
+2020-03-04 16:21:49,422 [5] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 4
+2020-03-04 16:21:52,433 [5] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 5
+2020-03-04 16:22:48,038 [5] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 6
+2020-03-04 16:22:48,079 [17] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 12 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\Sample\physicsOfRollingApple.jpg.
+2020-03-04 16:22:48,120 [12] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 14 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes\4e6da28748b4f3026cfa840d38b168c1d8afa03b72fb10606238c2ac2591a147.jpg.
+2020-03-04 16:22:48,162 [19] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 13 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\Sample\tumbleweed.png.
+2020-03-04 16:22:48,944 [18] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 11 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\Sample\Physics1.jpg.
+2020-03-04 16:22:49,015 [16] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 7
+2020-03-04 16:22:49,015 [15] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 10 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\Sample\Physics.jpg.
+2020-03-04 16:22:49,048 [12] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 19 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes2\2.jpg.
+2020-03-04 16:22:49,158 [7] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 15 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes\abMazaAayega.jpg.
+2020-03-04 16:22:49,162 [19] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 18 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes2\1.jpg.
+2020-03-04 16:22:49,368 [16] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 21 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes2\abMazaAayega.jpg.
+2020-03-04 16:23:07,978 [18] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 24 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes3\happy-couple-sketch-21.jpg.
+2020-03-04 16:23:07,980 [12] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 25 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes3\Untitled.jpg.
+2020-03-04 16:23:07,979 [19] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 23 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes3\download.jpg.
+2020-03-04 16:24:28,788 [6] DEBUG Website.Controllers.HomeController [(null)] - loading view 
+2020-03-04 16:24:31,657 [8] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 3 from path \Content\Images\icon.png.
+2020-03-04 16:24:31,744 [6] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 6 from path \Content\Images\aboutUs.jpg.
+2020-03-04 16:24:31,771 [10] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 7 from path \Content\Images\clockBckgrnd.png.
+2020-03-04 16:24:31,795 [11] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 9 from path \Content\Images\Physics.jpg.
+2020-03-04 16:24:31,836 [9] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 4 from path \Content\Images\landingPageImage.jpg.
+2020-03-04 16:24:39,689 [11] DEBUG Website.Controllers.AlbumController [(null)] - getting all albumIds.
+2020-03-04 16:24:46,920 [9] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 5
+2020-03-04 16:24:46,920 [6] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 3
+2020-03-04 16:24:46,923 [8] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 4
+2020-03-04 16:24:46,920 [10] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 2
+2020-03-04 16:24:46,922 [11] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 6
+2020-03-04 16:24:46,922 [12] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 7
+2020-03-04 16:24:47,071 [13] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 14 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes\4e6da28748b4f3026cfa840d38b168c1d8afa03b72fb10606238c2ac2591a147.jpg.
+2020-03-04 16:24:47,152 [10] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 24 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes3\happy-couple-sketch-21.jpg.
+2020-03-04 16:24:47,177 [9] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 10 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\Sample\Physics.jpg.
+2020-03-04 16:24:47,267 [11] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 16 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes\download.jpg.
+2020-03-04 16:24:47,278 [14] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 22 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes3\cute-sketch-of-couples-20.jpg.
+2020-03-04 16:24:47,320 [12] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 20 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes2\4e6da28748b4f3026cfa840d38b168c1d8afa03b72fb10606238c2ac2591a147.jpg.
+2020-03-04 16:24:47,404 [8] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 23 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes3\download.jpg.
+2020-03-04 16:24:47,408 [15] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 18 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes2\1.jpg.
+2020-03-04 16:24:47,460 [11] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 12 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\Sample\physicsOfRollingApple.jpg.
+2020-03-04 16:24:47,567 [10] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 11 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\Sample\Physics1.jpg.
+2020-03-04 16:25:42,739 [12] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 19 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes2\2.jpg.
+2020-03-04 16:25:48,784 [15] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 25 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes3\Untitled.jpg.
+2020-03-04 16:25:48,816 [9] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 15 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes\abMazaAayega.jpg.
+2020-03-04 16:27:28,338 [9] DEBUG Website.Controllers.HomeController [(null)] - loading view 
+2020-03-04 16:28:39,071 [9] DEBUG Website.Controllers.HomeController [(null)] - loading view 
+2020-03-04 16:30:12,290 [14] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 6 from path \Content\Images\aboutUs.jpg.
+2020-03-04 16:30:16,185 [9] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 9 from path \Content\Images\Physics.jpg.
+2020-03-04 16:30:18,293 [11] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 4 from path \Content\Images\landingPageImage.jpg.
+2020-03-04 16:30:22,365 [9] DEBUG Website.Controllers.AlbumController [(null)] - getting all albumIds.
+2020-03-04 16:30:29,730 [15] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 7
+2020-03-04 16:30:29,730 [12] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 3
+2020-03-04 16:30:29,730 [13] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 5
+2020-03-04 16:30:29,730 [9] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 4
+2020-03-04 16:30:29,730 [14] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 6
+2020-03-04 16:30:29,740 [11] DEBUG Website.Controllers.AlbumController [(null)] - getting any 4 ImageIds associated to albumId 2
+2020-03-04 16:30:38,132 [12] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 30 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes5\download.jpg.
+2020-03-04 16:30:39,130 [16] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 16 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes\download.jpg.
+2020-03-04 16:30:39,154 [9] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 17 from path C:\Personal\Projects\cgvs\CGVSSolutions\Website\Content\Images\New memes\romantic-anniversary-message-love-story.jpg.
+2020-03-04 16:32:59,260 [9] DEBUG Website.Controllers.HomeController [(null)] - loading view 
+2020-03-04 16:33:12,816 [9] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 3 from path \Content\Images\icon.png.
+2020-03-04 16:33:13,569 [12] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 6 from path \Content\Images\aboutUs.jpg.
+2020-03-04 16:33:15,526 [13] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 7 from path \Content\Images\clockBckgrnd.png.
+2020-03-04 16:33:15,529 [15] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 9 from path \Content\Images\Physics.jpg.
+2020-03-04 16:33:27,737 [12] DEBUG Website.Controllers.HomeController [(null)] - loading view 
+2020-03-04 16:43:14,896 [9] DEBUG Website.Controllers.HomeController [(null)] - loading view 
+2020-03-04 16:46:23,228 [10] DEBUG Website.Controllers.HomeController [(null)] - loading view 
+2020-03-04 16:46:38,572 [12] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 3 from path \Content\Images\icon.png.
+2020-03-04 16:46:38,572 [13] DEBUG Website.Controllers.ImagesController [(null)] - Loading image of id 7 from path \Content\Images\clockBckgrnd.png.

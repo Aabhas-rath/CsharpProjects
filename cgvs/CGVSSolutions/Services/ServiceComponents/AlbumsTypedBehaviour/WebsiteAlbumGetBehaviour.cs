@@ -3,10 +3,7 @@ using Repository.Persistance;
 using Services.ServiceComponents.AlbumBehaviours;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.ServiceComponents.AlbumsTypedBehaviour
 {
@@ -15,11 +12,11 @@ namespace Services.ServiceComponents.AlbumsTypedBehaviour
         private RepositoryWorker _worker = null;
         public WebsiteAlbumGetBehaviour()
         {
-            _worker = new RepositoryWorker();
+            _worker = RepositoryWorker.Instance();
         }
         public WebsiteAlbumGetBehaviour(string DBCS)
         {
-            _worker = new RepositoryWorker(DBCS);
+            _worker = RepositoryWorker.Instance(DBCS);
         }
         public IEnumerable<Album> Find(Expression<Func<Album, bool>> predicate)
         {

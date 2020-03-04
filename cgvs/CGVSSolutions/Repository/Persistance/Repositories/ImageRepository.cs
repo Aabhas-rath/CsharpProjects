@@ -7,7 +7,22 @@ namespace Repository.Persistance.Repositories
 {
     public class ImageRepository : Repository<Image>, IImageRepository
     {
-        public ImageRepository(CGVSContext context) : base(context)
+        private static ImageRepository _instance;
+        private static readonly object padlock = new object();
+
+        public static ImageRepository Instance(CGVSContext context)
+        {
+            lock (padlock)
+            {
+                if (_instance == null)
+                {
+                    _instance = new ImageRepository(context);
+                }
+                return _instance;
+            }
+
+        }
+        protected ImageRepository(CGVSContext context) : base(context)
         {
         }
 

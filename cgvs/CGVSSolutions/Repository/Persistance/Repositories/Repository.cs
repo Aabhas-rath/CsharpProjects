@@ -10,16 +10,33 @@ namespace Repository.Persistance.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
+        private static Repository<TEntity> _instance = null;
+        private static readonly object syncLock = new object();
+
         protected readonly DbContext Context;
         private DbSet<TEntity> _entity = null; 
 
-        public Repository(DbContext context)
+        protected Repository(DbContext context)
         {
             Context = context;
             _entity = context.Set<TEntity>();
             _entity.Load();
         }
 
+        protected static Repository<TEntity> repository(DbContext DBContext)
+        {
+            if (_instance == null)
+            {
+                lock (syncLock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new Repository<TEntity>(DBContext);
+                    }
+                }
+            }
+            return _instance;
+        }
         public TEntity Get(int id)
         {
             // Here we are working with a DbContext, not PlutoContext. So we don't have DbSets 
@@ -34,7 +51,7 @@ namespace Repository.Persistance.Repositories
 
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            return _entity.Where(predicate);
+            return _entity.Where(predicate).ToList();
         }
 
         public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)

@@ -5,19 +5,50 @@ namespace Repository.Persistance
 {
     public class RepositoryWorker : IRepositoryWorker
     {
+        private static RepositoryWorker _instance = null;
+        private static readonly object lockObj = new object();
 
         private CGVSContext context = null;
-        public RepositoryWorker()
+        protected RepositoryWorker()
         {
-            context = new CGVSContext();
-            Images = new ImageRepository(context);
-            Albums = new AlbumRepository(context);
+            context = CGVSContext.context();
+            Images = ImageRepository.Instance(context);
+            Albums = AlbumRepository.Instance(context);
         }
-        public RepositoryWorker( string DBCS)
+        protected RepositoryWorker( string DBCS)
         {
-            context = new CGVSContext(DBCS);
-            Images = new ImageRepository(context);
-            Albums = new AlbumRepository(context);
+            context = CGVSContext.context(DBCS);
+            Images = ImageRepository.Instance(context);
+            Albums = AlbumRepository.Instance(context);
+        }
+
+        public static RepositoryWorker Instance()
+        {
+            if (_instance == null)
+            {
+                lock (lockObj)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new RepositoryWorker();
+                    }
+                }
+            }
+            return _instance;
+        }
+        public static RepositoryWorker Instance(string DBCS)
+        {
+            if (_instance == null)
+            {
+                lock (lockObj)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new RepositoryWorker(DBCS);
+                    }
+                }
+            }
+            return _instance;
         }
 
         public ImageRepository Images { get; private set; }

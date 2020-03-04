@@ -1,4 +1,5 @@
-﻿using Services;
+﻿using log4net;
+using Services;
 using Services.ServiceComponents.AlbumsTypedBehaviour;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +12,7 @@ namespace Website.Controllers
 {
     public class AlbumController : Controller
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(AlbumController));
         AlbumService albumService = null;
 
         public AlbumController()
@@ -23,19 +25,33 @@ namespace Website.Controllers
         [HttpGet]
         public JsonResult Get(int id)
         {
-            return Json(albumService.GetImageIdsAssociatedToAlbum(id).ToArray(),JsonRequestBehavior.AllowGet);
+            Log.Debug("getting ImageIds associated to albumId " + id);
+            return Json(albumService.GetImageIdsAssociatedToAlbum(id).ToArray(), "application/json", JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public JsonResult GetAll()
         {
-            return Json(albumService.GetAll().ToArray(), JsonRequestBehavior.AllowGet);
+            Log.Debug("getting all albumIds.");
+
+            try
+            {
+                return Json(albumService.GetAll().ToArray(), "application/json", JsonRequestBehavior.AllowGet);
+            }
+            catch (System.Exception ex)
+            {
+                Log.Debug(ex.Message);
+                return new JsonResult();
+            }
         }
 
         [HttpGet]
         public JsonResult GetfirstfourImages(int id)
         {
-            var result = Json(albumService.GetImageIdsAssociatedToAlbum(id).ToList().Take(4).ToArray(), JsonRequestBehavior.AllowGet);
+            
+            var result = Json(albumService.GetImageIdsAssociatedToAlbum(id).ToList().Take(4).ToArray(), "application/json", JsonRequestBehavior.AllowGet);
+            Log.Debug("getting any 4 ImageIds associated to albumId " + id);
+
             return result;
         }
 
@@ -46,23 +62,29 @@ namespace Website.Controllers
 
             if (uploadedFiles.Count >= 1)
             {
+                Log.Debug(uploadedFiles.Count + "files to be uploaded.");
                 List<string> savePaths = new List<string>();
                 foreach (var httpPostedFile in uploadedFiles)
                 {
                     if (httpPostedFile.ContentLength>=0 && (httpPostedFile.ContentType == "image/jpeg" || httpPostedFile.ContentType == "image/png"))
                     {
                         var filename = httpPostedFile.FileName.Trim();
+
+                        Log.Debug(filename + " file is saving.");
                         if (filename.IndexOfAny(Path.GetInvalidFileNameChars()) != -1)
                         {
                             continue;
                         }
-                        var ctrctx = ControllerContext;
                         var savePath = Path.Combine(ControllerContext.HttpContext.Server.MapPath("~/Content/Temp"), filename);
                         httpPostedFile.SaveAs(savePath);
                         savePaths.Add(savePath);
+                        Log.Debug(filename + " file is saved at " + savePath);
                     }
                 }
-                if (albumService.NewAlbum(album.AlbumName, savePaths, ControllerContext.HttpContext.Server.MapPath("~/Content")) != 0)
+
+                var albumpath = ControllerContext.HttpContext.Server.MapPath("~/Content");
+                Log.Debug("creating Album folder " + album.AlbumName + " at " + albumpath);
+                if (albumService.NewAlbum(album.AlbumName, savePaths, albumpath) != 0)
                 {
                     return PartialView("SaveSuccessModal",savePaths.Count);
                 }
