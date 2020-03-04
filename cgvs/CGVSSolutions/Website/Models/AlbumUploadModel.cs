@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
 
 namespace Website.Models
 {
-    [Serializable]
     public class AlbumUploadModel
     {
         [Required(ErrorMessage = "Please select Images.")]

@@ -6,22 +6,10 @@ namespace Repository.Persistance.Repositories
 {
     public class AlbumRepository : Repository<Album>, IAlbumRepository
     {
-        private static AlbumRepository _instance;
-        private static readonly object padlock = new object();
-
-        public static AlbumRepository Instance(CGVSContext context)
+        public AlbumRepository(CGVSContext context):base(context)
         {
-            lock (padlock)
-            {
-                if (_instance == null)
-                {
-                    _instance = new AlbumRepository(context);
-                }
-                return _instance;
-            }
-            
         }
-        protected AlbumRepository(CGVSContext context) : base(context) { }
+
         public int Count()
         {
             return base.GetAll().Count();

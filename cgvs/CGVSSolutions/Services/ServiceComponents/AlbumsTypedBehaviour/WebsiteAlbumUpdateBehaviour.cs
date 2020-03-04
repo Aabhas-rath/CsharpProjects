@@ -16,11 +16,11 @@ namespace Services.ServiceComponents.AlbumsTypedBehaviour
         private RepositoryWorker _worker = null;
         public WebsiteAlbumUpdateBehaviour()
         {
-            _worker = RepositoryWorker.Instance();
+            _worker = new RepositoryWorker();
         }
         public WebsiteAlbumUpdateBehaviour(string DBCS)
         {
-            _worker = RepositoryWorker.Instance(DBCS);
+            _worker = new RepositoryWorker(DBCS);
         }
 
         public int AddImageToTheAlbum(int AlbumId, int ImageId)

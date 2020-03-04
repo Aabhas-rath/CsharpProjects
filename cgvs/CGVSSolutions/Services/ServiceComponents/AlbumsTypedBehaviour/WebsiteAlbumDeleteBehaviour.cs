@@ -1,6 +1,11 @@
 ﻿using Models;
 using Repository.Persistance;
 using Services.ServiceComponents.AlbumBehaviours;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Services.ServiceComponents.AlbumsTypedBehaviour
 {
@@ -9,11 +14,11 @@ namespace Services.ServiceComponents.AlbumsTypedBehaviour
         private RepositoryWorker _worker = null;
         public WebsiteAlbumDeleteBehaviour()
         {
-            _worker = RepositoryWorker.Instance();
+            _worker = new RepositoryWorker();
         }
         public WebsiteAlbumDeleteBehaviour(string DBCS)
         {
-            _worker = RepositoryWorker.Instance(DBCS);
+            _worker = new RepositoryWorker(DBCS);
         }
         public bool Delete(Album entity)
         {

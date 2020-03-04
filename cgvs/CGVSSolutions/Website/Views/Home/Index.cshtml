@@ -2,7 +2,6 @@
 <!--Navigation start-->
 <script>
     function ProcessEachAlbum(albumId) {
-        //alert("ProcessEachAlbum");
         if ((albumId != 1) && ($("#gallery" + albumId).length == 0)) {
             var galleryCarousel = "<div id=\"gallery" + albumId + "\" class=\"carousel slide\" data-ride=\"carousel\">" +
                 "<ol id=\"carouselIndicators" + albumId + "\" class=\"carousel-indicators\"></ol><div id=\"carouselInner" + albumId + "\" class=\"carousel-inner my-inner\"></div>" +
@@ -13,7 +12,6 @@
             var dataTarget = "data-target=\"#gallery" + albumId+"\"";
             $.getJSON(geturl, function (imageIdArray, status) {
                 if (status == "success") {
-                    //alert("getJSON imageIdArray");
                     var carouselIndicatorsList = [];
                     var carouselList = [];
                     var index = 1;
@@ -48,29 +46,23 @@
             });
         }
     };
-    function loadAlbums(AlbumIdArray) {
-        //alert("loadAlbums");
-        AlbumIdArray.forEach(ProcessEachAlbum);
-    };
-    function call() {
-        if ($("#galleryStart").children().length == 0) {
-            //alert("call");
+    function loadAlbums(AlbumIdArray, status) {
+        if (status == "success") {
+            AlbumIdArray.forEach(ProcessEachAlbum);
+        }
+        else {
             $.ajax({
-                type: "GET",
-                url: '@Url.Action("GetAll","Album")',
-                success: loadAlbums,
-                failure: function () {
-                    $.ajax({
                         type: "GET",
                         url: '@Url.Action("commingSoon","Home")',
                         dataType: "html",
                         success: function (response) { $("#galleryStart").html(response); },
                         failure: function (response) { $("#galleryStart").append("Comming Soon. please check back later"); }
                     });
-                }
-            });
-            //$.get('@Url.Action("GetAll","Album")',loadAlbums);
-            //alert("call");
+        }
+    };
+    function call() {
+        if ($("#galleryStart").children().length == 0) {
+            $.get('@Url.Action("GetAll","Album")',loadAlbums);
         }
     };
     function removeDivandDisableNav(divId) {
@@ -86,7 +78,7 @@
     };
     var modalfunc = function (e) { $('#manageAlbums .modal-body').html(''); };
     var toggleAlbumManager = function () {
-        $.get('.@Url.Action("UploadFiles","Manage")', function (data) { $('#manageAlbums .modal-body').html(data); })
+        $.get('@Url.Action("UploadFiles","Manage")', function (data) { $('#manageAlbums .modal-body').html(data); })
         $('#manageAlbums').modal('show');
     };
     $('#manageAlbums').on('hidden.bs.modal', modalfunc);

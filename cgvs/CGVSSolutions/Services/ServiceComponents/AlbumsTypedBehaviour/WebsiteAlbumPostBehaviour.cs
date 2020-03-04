@@ -9,11 +9,11 @@ namespace Services.ServiceComponents.AlbumsTypedBehaviour
         private RepositoryWorker _worker = null;
         public WebsiteAlbumPostBehaviour()
         {
-            _worker = RepositoryWorker.Instance();
+            _worker = new RepositoryWorker();
         }
         public WebsiteAlbumPostBehaviour(string DBCS)
         {
-            _worker = RepositoryWorker.Instance(DBCS);
+            _worker = new RepositoryWorker(DBCS);
         }
         public int Post(Album entity)
         {
