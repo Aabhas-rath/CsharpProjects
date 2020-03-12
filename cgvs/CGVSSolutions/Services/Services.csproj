@@ -60,6 +60,7 @@
     <Compile Include="ServiceComponents\ImageBehaviours\IImageGetBehaviour.cs" />
     <Compile Include="ServiceComponents\ImageBehaviours\IImagePostBehaviour.cs" />
     <Compile Include="ServiceComponents\ImagesTypedBehaviour\WebSiteImageGetBehaviour.cs" />
+    <Compile Include="ServiceComponents\ImagesTypedBehaviour\WebSiteImagePostBehaviour.cs" />
     <Compile Include="ServiceComponents\ServiceExceptions\AlbumNotFoundException.cs" />
     <Compile Include="ServiceComponents\ServiceExceptions\ImageNotFoundException.cs" />
   </ItemGroup>

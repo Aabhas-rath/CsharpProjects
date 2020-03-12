@@ -29,7 +29,15 @@ namespace Website.Controllers
         [HttpGet]
         public JsonResult GetAll()
         {
-            return Json(albumService.GetAll().ToArray(), JsonRequestBehavior.AllowGet);
+            try
+            {
+                var result = Json(albumService.GetAll().ToArray(), JsonRequestBehavior.AllowGet);
+                return result;
+            }
+            catch (System.Exception ex)
+            {
+                return Json($"Error - {ex.Message}\nStack Trace - {ex.StackTrace} ");
+            }
         }
 
         [HttpGet]

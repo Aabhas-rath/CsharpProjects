@@ -10,14 +10,14 @@ namespace Repository.Persistance
         public RepositoryWorker()
         {
             context = new CGVSContext();
-            Images = new ImageRepository(context);
-            Albums = new AlbumRepository(context);
+            Images = ImageRepository.GetRepository(context);
+            Albums = AlbumRepository.GetRepository(context);
         }
         public RepositoryWorker( string DBCS)
         {
             context = new CGVSContext(DBCS);
-            Images = new ImageRepository(context);
-            Albums = new AlbumRepository(context);
+            Images = ImageRepository.GetRepository(context);
+            Albums = AlbumRepository.GetRepository(context);
         }
 
         public ImageRepository Images { get; private set; }

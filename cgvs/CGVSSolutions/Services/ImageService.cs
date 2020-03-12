@@ -1,4 +1,6 @@
 ﻿using Services.ServiceComponents.ImageBehaviours;
+using Services.ServiceComponents.ServiceExceptions;
+using System.IO;
 
 namespace Services
 {
@@ -22,6 +24,5 @@ namespace Services
         {
            return ImageGet.GetPathOfImage(id,version);
         }
-
     }
 }

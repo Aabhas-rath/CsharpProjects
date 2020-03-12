@@ -150,7 +150,7 @@ namespace Services
         public int NewAlbum(string AlbumName, IEnumerable<string> ListOfImages, string baseFolder)
         {
             var albumfolder = Directory.CreateDirectory(Path.Combine(baseFolder, "Images" , AlbumName));
-            var Album = new Models.Album() { FolderPath = albumfolder.FullName, Images = new List<Models.Image>(), Name = AlbumName };
+            var Album = new Models.Album() { FolderPath = Path.Combine(@"~\Content", "Images", AlbumName), Images = new List<Models.Image>(), Name = AlbumName };
             foreach (var item in ListOfImages)
             {
                 if (File.Exists(item))
@@ -160,7 +160,7 @@ namespace Services
                     {
                         File.Move(item, newPathofImage);
                     }
-                    Album.Images.Add(new Models.Image() { Path = newPathofImage, Version = 1 });
+                    Album.Images.Add(new Models.Image() { Path = Path.Combine(@"~\Content", "Images", AlbumName,Path.GetFileName(item)), Version = 1 });
                 }
             }
             return postBehaviour.Post(Album);

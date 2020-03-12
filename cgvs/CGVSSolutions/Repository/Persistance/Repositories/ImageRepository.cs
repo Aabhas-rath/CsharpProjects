@@ -7,9 +7,36 @@ namespace Repository.Persistance.Repositories
 {
     public class ImageRepository : Repository<Image>, IImageRepository
     {
-        public ImageRepository(CGVSContext context) : base(context)
+        private static ImageRepository _instance = null;
+        private static readonly object lockobj = new object();
+
+
+        protected ImageRepository(CGVSContext context) : base(context)
         {
         }
+
+        public static ImageRepository GetRepository(CGVSContext context) 
+        {
+            if (_instance == null)
+            {
+                lock (lockobj)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new ImageRepository(context);
+                    }
+                }
+            }
+            else if (context != _instance.Context)
+            {
+                lock (lockobj)
+                {
+                    _instance = new ImageRepository(context);
+                }
+            }
+            return _instance;
+        }
+
 
         public string GetPathOfImage(int id)
         {

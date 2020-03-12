@@ -23,7 +23,7 @@ namespace Website.Controllers
         public ActionResult GetImage(int id)
         {
             var path = _websiteImageService.PathOfImage(id);
-            return base.File(path, "image/jpeg|image/png");
+            return base.File(ControllerContext.HttpContext.Server.MapPath(path), "image/jpeg|image/png");
         }
        
 
