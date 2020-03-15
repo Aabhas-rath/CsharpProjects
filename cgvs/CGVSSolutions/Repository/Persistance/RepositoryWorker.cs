@@ -7,21 +7,21 @@ namespace Repository.Persistance
     {
 
         private CGVSContext context = null;
+        private ImageRepository images;
+        private AlbumRepository albums;
+
         public RepositoryWorker()
         {
             context = new CGVSContext();
-            Images = ImageRepository.GetRepository(context);
-            Albums = AlbumRepository.GetRepository(context);
+
         }
-        public RepositoryWorker( string DBCS)
+        public RepositoryWorker(string DBCS)
         {
             context = new CGVSContext(DBCS);
-            Images = ImageRepository.GetRepository(context);
-            Albums = AlbumRepository.GetRepository(context);
         }
 
-        public ImageRepository Images { get; private set; }
-        public AlbumRepository Albums { get; set; }
+        public ImageRepository Images { get => images ?? (images = new ImageRepository(context)); private set => images = value; }
+        public AlbumRepository Albums { get => albums ?? (albums = new AlbumRepository(context)); private set => albums = value; }
 
         public int Complete()
         {
@@ -31,6 +31,8 @@ namespace Repository.Persistance
         public void Dispose()
         {
             context.Dispose();
+            Images = null;
+            Albums = null;
         }
     }
 }

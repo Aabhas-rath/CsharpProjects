@@ -9,20 +9,14 @@ namespace Website.Controllers
     [HandleError]
     public class HomeController : Controller
     {
-        private ImageService _websiteImageService = null;
         public HomeController()
         {
             WebConfigurationManager webConfiguration = WebConfigurationManager.Instance;
-
-            _websiteImageService = new ImageService(new WebSiteImageGetBehaviour(webConfiguration.ConnectionString));
         }
         public ActionResult Index()
         {
             ViewBag.WebsiteName = "Chhattisgarh Vigyan sabha";
-            //TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("W. Europe Standard Time");
-            //var date = new DateTime(2016, 11, 23);
-            //ViewBag.timeinfo = TimeZoneInfo.ConvertTimeToUtc(date,timeZoneInfo);
-            
+            ViewBag.Title = "Chhattisgarh Vigyan sabha";
             return View();
         }
 
@@ -40,7 +34,7 @@ namespace Website.Controllers
             return View();
         }
 
-        public ActionResult comingSoon()
+        public ActionResult commingSoon()
         {
             return PartialView("comingSoon");
         }

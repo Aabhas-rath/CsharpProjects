@@ -242,8 +242,14 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\vigyansabha - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\vigyansabha - FTP1.pubxml" />
+    <None Include="Properties\PublishProfiles\vigyansabha - FTP2.pubxml" />
     <None Include="Properties\PublishProfiles\vigyansabha - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\vigyansabha - ReadOnly - FTP1.pubxml" />
+    <None Include="Properties\PublishProfiles\vigyansabha - ReadOnly - FTP2.pubxml" />
     <None Include="Properties\PublishProfiles\vigyansabha - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\vigyansabha - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\vigyansabha - Web Deploy2.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\IndexPage.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

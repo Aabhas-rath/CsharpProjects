@@ -90,8 +90,6 @@ namespace Services
                 return imagepathlist;
             }
         }
-
-
         /// <summary>
         /// list of Ids of images associated
         /// </summary>
@@ -153,7 +151,7 @@ namespace Services
             var Album = new Models.Album() { FolderPath = Path.Combine(@"~\Content", "Images", AlbumName), Images = new List<Models.Image>(), Name = AlbumName };
             foreach (var item in ListOfImages)
             {
-                if (File.Exists(item))
+                if (!File.Exists(item))
                 {
                     var newPathofImage = albumfolder.FullName + "\\" + Path.GetFileName(item);
                     if (newPathofImage != item)
@@ -165,7 +163,6 @@ namespace Services
             }
             return postBehaviour.Post(Album);
         }
-
         /// <summary>
         /// Adds an Image to the existing album.
         /// </summary>
@@ -180,12 +177,10 @@ namespace Services
         {
             return updateBehaviour.AddImageToTheAlbum(albumid, imageid);
         }
-
         public void DeleteAlbum(int albumid)
         {
             deleteBehaviour.Delete(getBehaviour.Get(albumid));
         }
-
         public IEnumerable<string> GetAllAlbumNames()
         {
             return getBehaviour.GetAll().Select(a => a.Name).AsEnumerable();
@@ -194,7 +189,5 @@ namespace Services
         {
             return getBehaviour.GetAll().Select(a => a.Id).AsEnumerable();
         }
-
-
     }
 }

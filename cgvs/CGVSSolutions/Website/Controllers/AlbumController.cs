@@ -3,6 +3,7 @@ using Services.ServiceComponents.AlbumsTypedBehaviour;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Web;
 using System.Web.Mvc;
 using Website.Models;
@@ -18,8 +19,8 @@ namespace Website.Controllers
             WebConfigurationManager webConfiguration = WebConfigurationManager.Instance;
             var constr = webConfiguration.ConnectionString;
             albumService = new AlbumService(new WebsiteAlbumGetBehaviour(constr), new WebsiteAlbumPostBehaviour(constr), new WebsiteAlbumUpdateBehaviour(constr), new WebsiteAlbumDeleteBehaviour(constr));
-
         }
+
         [HttpGet]
         public JsonResult Get(int id)
         {
@@ -51,7 +52,8 @@ namespace Website.Controllers
         public ActionResult Post(AlbumUploadModel album)
         {
             var uploadedFiles = new List<HttpPostedFileBase>(album.Files);
-
+            var contentPath = ControllerContext.HttpContext.Server.MapPath("~/Content");
+            var TempFolderPath = Path.Combine(contentPath,"Temp");
             if (uploadedFiles.Count >= 1)
             {
                 List<string> savePaths = new List<string>();
@@ -64,13 +66,14 @@ namespace Website.Controllers
                         {
                             continue;
                         }
-                        var ctrctx = ControllerContext;
-                        var savePath = Path.Combine(ControllerContext.HttpContext.Server.MapPath("~/Content/Temp"), filename);
+                        var tempFolder = Directory.CreateDirectory(TempFolderPath);
+                        tempFolder.EnumerateFiles().ToList().ForEach(f => f.Delete());
+                        var savePath = Path.Combine(tempFolder.FullName, filename);
                         httpPostedFile.SaveAs(savePath);
                         savePaths.Add(savePath);
                     }
                 }
-                if (albumService.NewAlbum(album.AlbumName, savePaths, ControllerContext.HttpContext.Server.MapPath("~/Content")) != 0)
+                if (albumService.NewAlbum(album.AlbumName, savePaths, contentPath) != 0)
                 {
                     return PartialView("SaveSuccessModal",savePaths.Count);
                 }
