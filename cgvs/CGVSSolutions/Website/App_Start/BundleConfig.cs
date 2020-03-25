@@ -24,8 +24,6 @@ namespace Website
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css","~/Content/Style.css", "~/Content/fixed.css"));
-            bundles.Add(new ScriptBundle("~/bundles/index").Include(
-                "~/Scripts/IndexPage.js"));
         }
     }
 }

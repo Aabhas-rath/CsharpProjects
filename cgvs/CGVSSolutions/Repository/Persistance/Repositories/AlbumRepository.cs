@@ -9,6 +9,7 @@ namespace Repository.Persistance.Repositories
         public AlbumRepository(CGVSContext context):base(context)
         {
         }
+
         public int Count()
         {
             return base.GetAll().Count();
