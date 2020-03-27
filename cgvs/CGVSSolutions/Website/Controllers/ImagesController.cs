@@ -19,6 +19,7 @@ namespace Website.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public ActionResult GetImage(int id)
         {

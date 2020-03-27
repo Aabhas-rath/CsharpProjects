@@ -1,8 +1,18 @@
 ﻿<!-- body Start-->
 <!--Navigation start-->
 <script>
-    function ProcessEachAlbum(albumId) {
-        if ((albumId != 1) && ($("#gallery" + albumId).length == 0)) {
+    var commingsoon = function (id) {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("commingSoon","Home")",
+            dataType: "html",
+            success: function (response) { $("#" + id).html(response); },
+            failure: function (response) { $("#" + id).append("Comming Soon. please check back later"); }
+        });
+    }
+
+    var ProcessEachAlbum = function(albumId) {
+        if (((albumId != 1) && (albumId != 2)) && ($("#gallery" + albumId).length == 0)) {
             var galleryCarousel = "<div id=\"gallery" + albumId + "\" class=\"carousel slide\" data-ride=\"carousel\">" +
                 "<ol id=\"carouselIndicators" + albumId + "\" class=\"carousel-indicators\"></ol><div id=\"carouselInner" + albumId + "\" class=\"carousel-inner my-inner\"></div>" +
                     "<a class=\"carousel-control-prev\" href=\"#gallery" + albumId + "\" role=\"button\" data-slide=\"prev\"><span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span> <span class=\"sr-only\">Previous</span>" +
@@ -28,44 +38,36 @@
                             carouselList.push("null");
 
                     });
-                    carouselList[0] = "<div class=\"carousel-item active\"><img class=\"d-block w-100 albumCarouselImage\" src=\"@Url.Action("getimage","images")/"+imageIdArray[0]+"\" alt=\"" + imageIdArray[0] + "\"></div>";
+                    carouselList[0] = "<div class=\"carousel-item active\"><img class=\"d-block w-100 albumCarouselImage\" src=\"@Url.Action("getimage","images")/" + imageIdArray[0] + "\" alt=\"" + imageIdArray[0] + "\"></div>";
+                    carouselIndicatorsList.pop();
                     $("#carouselIndicators" + albumId).append(carouselIndicatorsList.join(''));
                     $("#carouselInner" + albumId).append(carouselList.join(''));
                 }
                 else {
 
                     $("#galleryStart").remove("#gallery" + albumId);
-                    $.ajax({
-                        type: "GET",
-                        url: "@Url.Action("commingSoon","Home")",
-                        dataType: "html",
-                        success: function (response) { $("#galleryStart").html(response); },
-                        failure: function (response) { $("#galleryStart").append("Comming Soon. please check back later"); }
-                    });
+                    commingsoon("galleryStart");
                 }
             });
         }
     };
-    function loadAlbums(AlbumIdArray, status) {
+
+    var loadAlbums = function(AlbumIdArray, status) {
         if (status == "success") {
             AlbumIdArray.forEach(ProcessEachAlbum);
         }
         else {
-            $.ajax({
-                        type: "GET",
-                        url: '@Url.Action("commingSoon","Home")',
-                        dataType: "html",
-                        success: function (response) { $("#galleryStart").html(response); },
-                        failure: function (response) { $("#galleryStart").append("Comming Soon. please check back later"); }
-                    });
+             commingsoon("galleryStart");
         }
     };
-    function call() {
+
+    var call= function() {
         if ($("#galleryStart").children().length == 0) {
             $.get('@Url.Action("GetAll","Album")',loadAlbums);
         }
     };
-    function removeDivandDisableNav(divId) {
+
+    var removeDivandDisableNav = function(divId) {
         if ($(divId).length == 0) {
             var navElement = $("a[href:'" + divId.slice(1) + "']");
             if (navElement.next().is("br")) {
@@ -76,11 +78,14 @@
                 navElement.remove();
         }
     };
+
     var modalfunc = function (e) { $('#manageAlbums .modal-body').html(''); };
+
     var toggleAlbumManager = function () {
         $.get('@Url.Action("UploadFiles","Manage")', function (data) { $('#manageAlbums .modal-body').html(data); })
         $('#manageAlbums').modal('show');
     };
+    
     $('#manageAlbums').on('hidden.bs.modal', modalfunc);
 
     window.onload = function () {
@@ -89,25 +94,6 @@
             if (element.getAttribute("href") != "#")
             removeDivandDisableNav(element.attributes["href"].value);
         });
-
-        $('#CreateAlbum').submit(function (e) {
-        e.preventDefault();
-        var formData = new FormData(this);
-        $.ajax({
-            url: this.attr('action'),
-            type: "POST",
-            dataType: "html",
-            contentType: "multipart/form-data",
-            data: formData,
-            processData: false,
-            success: function (result) {
-                $('#result').html(result);
-            },
-            error: function (result) {
-
-            }
-        });
-    });
     };
 
 </script>
@@ -235,10 +221,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary align-self-center">Save changes</button>
+                <div id="modalbody" class="modal-body">
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System;
 using Models;
 
 namespace Services
@@ -147,19 +148,31 @@ namespace Services
         /// <returns> id of album</returns>
         public int NewAlbum(string AlbumName, IEnumerable<string> ListOfImages, string baseFolder)
         {
-            var albumfolder = Directory.CreateDirectory(Path.Combine(baseFolder, "Images" , AlbumName));
-            var Album = new Models.Album() { FolderPath = albumfolder.FullName, Images = new List<Models.Image>(), Name = AlbumName };
+            var albumfolder = Directory.CreateDirectory(Path.Combine(baseFolder, @"Content\Images" , AlbumName));
+            var Album = new Models.Album() { FolderPath = @"\" + GetRelativePath(albumfolder.FullName,baseFolder), Images = new List<Models.Image>(), Name = AlbumName };
             foreach (var item in ListOfImages)
             {
-                if (!File.Exists(item))
+                var newPathofImage = Path.Combine(albumfolder.FullName, Path.GetFileName(item));
+                if (File.Exists(item))
                 {
-                    var newPathofImage = albumfolder.FullName + "\\" + Path.GetFileName(item);
                     if (newPathofImage != item)
                     {
-                        File.Move(item, newPathofImage);
+                        if (File.Exists(newPathofImage))
+                        {
+                            File.Delete(newPathofImage);
+                        }
+                        try
+                        {
+                            File.Move(item, newPathofImage);
+                        }
+                        catch (IOException e)
+                        {
+                            throw;
+                        }
                     }
-                    Album.Images.Add(new Models.Image() { Path = newPathofImage, Version = 1 });
                 }
+                var RelativePath = @"\" + GetRelativePath(newPathofImage, baseFolder);
+                Album.Images.Add(new Models.Image() { Path = RelativePath, Version = 1 });
             }
             return postBehaviour.Post(Album);
         }
@@ -188,6 +201,18 @@ namespace Services
         public IEnumerable<int> GetAll()
         {
             return getBehaviour.GetAll().Select(a => a.Id).AsEnumerable();
+        }
+
+        private string GetRelativePath(string filespec, string folder)
+        {
+            Uri pathUri = new Uri(filespec);
+            // Folders must end in a slash
+            if (!folder.EndsWith(Path.DirectorySeparatorChar.ToString()))
+            {
+                folder += Path.DirectorySeparatorChar;
+            }
+            Uri folderUri = new Uri(folder);
+            return Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
         }
     }
 }

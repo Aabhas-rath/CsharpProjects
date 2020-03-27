@@ -1,5 +1,6 @@
 ﻿using Services;
 using Services.ServiceComponents.AlbumsTypedBehaviour;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -44,11 +45,13 @@ namespace Website.Controllers
         public ActionResult Post(AlbumUploadModel album)
         {
             var uploadedFiles = new List<HttpPostedFileBase>(album.Files);
-            var contentPath = ControllerContext.HttpContext.Server.MapPath("~/Content");
-            var TempFolderPath = Path.Combine(contentPath,"Temp");
+            var contentPath = ControllerContext.HttpContext.Server.MapPath("~");
+            var TempFolderPath = Path.Combine(contentPath, "Content", "Temp");
             if (uploadedFiles.Count >= 1)
             {
                 List<string> savePaths = new List<string>();
+                var tempFolder = Directory.CreateDirectory(TempFolderPath);
+                tempFolder.EnumerateFiles().ToList().ForEach(f => f.Delete());
                 foreach (var httpPostedFile in uploadedFiles)
                 {
                     if (httpPostedFile.ContentLength>=0 && (httpPostedFile.ContentType == "image/jpeg" || httpPostedFile.ContentType == "image/png"))
@@ -58,24 +61,21 @@ namespace Website.Controllers
                         {
                             continue;
                         }
-                        var tempFolder = Directory.CreateDirectory(TempFolderPath);
-                        tempFolder.EnumerateFiles().ToList().ForEach(f => f.Delete());
                         var savePath = Path.Combine(tempFolder.FullName, filename);
                         httpPostedFile.SaveAs(savePath);
                         savePaths.Add(savePath);
                     }
                 }
+                
                 if (albumService.NewAlbum(album.AlbumName, savePaths, contentPath) != 0)
                 {
-                    return PartialView("SaveSuccessModal",savePaths.Count);
+                    return PartialView("SaveSuccessModal", album);
                 }
                 else
-                    return PartialView("SaveFailureModal", savePaths.Count);
+                    return PartialView("SaveFailureModal", album);
             }
             else
                 return PartialView("NoImagesModal");
         }
-
-
     }
 }

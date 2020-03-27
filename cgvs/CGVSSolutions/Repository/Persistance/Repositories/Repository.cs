@@ -24,7 +24,9 @@ namespace Repository.Persistance.Repositories
         {
             // Here we are working with a DbContext, not PlutoContext. So we don't have DbSets 
             // such as Courses or Authors, and we need to use the generic Set() method to access them.
-            return _entity.Find(id);
+            var entity = _entity.Find(id);
+            
+            return entity;
         }
 
         public IEnumerable<TEntity> GetAll()

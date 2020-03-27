@@ -21,6 +21,7 @@
             context.Database.ExecuteSqlCommand(@"USE [CGVS];
                                                 SET IDENTITY_INSERT [dbo].[Albums] ON ;
                                                 INSERT [dbo].[Albums] ([Id], [Name], [FolderPath]) VALUES (1, N'System', N'\Content\Images');
+                                                INSERT [dbo].[Albums] ([Id], [Name], [FolderPath]) VALUES (2, N'WebStore', N'\Content\Images\WebStore');
                                                 SET IDENTITY_INSERT [dbo].[Albums] OFF;
                                                 SET IDENTITY_INSERT [dbo].[Images] ON ;
                                                 INSERT [dbo].[Images] ([id], [Path], [Version], [AlbumId]) VALUES (1, N'\Content\Images\Aabhas.jpg', 1, 1);

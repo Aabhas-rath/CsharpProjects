@@ -1,20 +1,20 @@
-﻿@{ 
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var savedAlbum = (Website.Models.AlbumUploadModel)Model;
+    var Album = (Website.Models.AlbumUploadModel)Model;
 }
 <div class="starryBackground">
     <div class="container-fluid">
         <nav aria-label="breadcrumb" style="background:rgb(0,0,0,0)">
             <ol class="breadcrumb" style="background:rgb(0,0,0,0)">
                 <li class="breadcrumb-item"><a href='@Url.Action("Index", "Home")'>Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Album Saved</li>
+                <li class="breadcrumb-item active" aria-current="page">Album Save failed</li>
             </ol>
         </nav>
         <div class="row">
             <div class="col align-content-md-center">
-                <h1>"@savedAlbum.AlbumName" saved</h1>
+                <h1 class="badge-danger">"@Album.AlbumName" saved</h1>
                 <table>
-                    @foreach (var item in savedAlbum.Files)
+                    @foreach (var item in Album.Files)
                     {
                         <tr>
                             <td>@Path.GetFileName(item.FileName)</td>

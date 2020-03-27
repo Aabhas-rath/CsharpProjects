@@ -10,26 +10,20 @@
                 {
                     <div class="form-group">
                         @Html.LabelFor(model => model.AlbumName, "Album name ", new { })
-                        <br />
                         @Html.TextBoxFor(model => model.AlbumName)
                     </div>
-
+                    <br/>
                     <div class="form-group">
                         @Html.LabelFor(model => model.Files, "Uploaded Files ")
-                        @{
-                            var filenames = (Model.Files == null || Model.Files.Count == 0) ? string.Empty : string.Join(", ", Model.Files.Select(m => m.FileName).ToArray());
-                        }
-                        @Html.TextBoxFor(model => model.Files, "image/jpeg|png", new { type = "file", @class = "form-control-file", @multiple = true })
-                        @Html.TextAreaFor(model => filenames, new { @class = "form-control", row = 3, @readonly = true })
-                        <br />
-                        <input type="submit" value="Upload" />
+                        @Html.TextBoxFor(model => model.Files, "image/jpeg|png", new { type = "file", @class = "form-control-file", @multiple = true, accept=".jpeg,.png,.jpg" })
+                    </div>
+
+                    <div class="modal-footer">
+                        <input class="btn btn-primary align-self-center" type="submit" value="Upload" />
                     </div>
                 }
-                @section Scripts{
-                    
-                }
-
             </div>
+
             <div class="col-sm-2"></div>
         </div>
         <div class="row">

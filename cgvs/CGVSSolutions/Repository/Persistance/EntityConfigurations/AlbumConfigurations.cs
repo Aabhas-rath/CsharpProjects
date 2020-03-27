@@ -16,8 +16,8 @@ namespace Repository.Persistance.EntityConfigurations
         {
             Property(i => i.FolderPath).HasColumnType("nVarchar").HasMaxLength(1000).IsRequired().HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
             Property(i => i.Name).HasColumnType("nVarchar").HasMaxLength(300).IsRequired().HasColumnAnnotation(IndexAnnotation.AnnotationName, new IndexAnnotation(new IndexAttribute() { IsUnique = true}));
-            Property(i=>i.Id).IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            HasMany(i => i.Images).WithOptional();
+            Property(i=>i.Id).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            HasMany(i => i.Images).WithRequired(i =>i.Album).HasForeignKey(a=>a.AlbumId);
         }
     }
 }

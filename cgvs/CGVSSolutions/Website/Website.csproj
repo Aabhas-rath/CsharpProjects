@@ -355,6 +355,7 @@
     <Content Include="Views\Album\NoImagesModal.cshtml" />
     <Content Include="Views\Manage\UploadFiles.cshtml" />
     <Content Include="Views\Shared\SaveSuccessModal.cshtml" />
+    <Content Include="Views\Shared\SaveFailureModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

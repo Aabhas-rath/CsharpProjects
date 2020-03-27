@@ -12,6 +12,7 @@ namespace Website.Models
 
         [Required(ErrorMessage = "Please give a name to the album")]
         [Display(Name = "Album name")]
+        [RegularExpression("[A-Za-z0-9.-]")]
         public string AlbumName { get; set; }
 
     }

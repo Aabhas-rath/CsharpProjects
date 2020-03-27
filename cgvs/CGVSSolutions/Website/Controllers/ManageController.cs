@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.IO;
+using System.Web.Mvc;
 using Website.Models;
 
 namespace Website.Controllers
@@ -11,7 +12,7 @@ namespace Website.Controllers
         public ManageController()
         {
             albumController = new AlbumController();
-            
+
         }
         // GET: Manage
         public ActionResult Index()
@@ -28,7 +29,7 @@ namespace Website.Controllers
         [HttpPost]
         public ActionResult UploadFiles(AlbumUploadModel Album)
         {
-           
+
             var ctrctx = ControllerContext;
             albumController.ControllerContext = this.ControllerContext;
             return albumController.Post(Album);

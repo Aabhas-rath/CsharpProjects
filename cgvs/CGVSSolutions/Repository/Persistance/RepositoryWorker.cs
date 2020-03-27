@@ -7,21 +7,41 @@ namespace Repository.Persistance
     {
 
         private CGVSContext context = null;
+        private ImageRepository images;
+        private AlbumRepository albums;
+
         public RepositoryWorker()
         {
             context = new CGVSContext();
-            Images = new ImageRepository(context);
-            Albums = new AlbumRepository(context);
+            init();
         }
-        public RepositoryWorker( string DBCS)
+        public RepositoryWorker(string DBCS)
         {
             context = new CGVSContext(DBCS);
-            Images = new ImageRepository(context);
-            Albums = new AlbumRepository(context);
+            init();
         }
-
-        public ImageRepository Images { get; private set; }
-        public AlbumRepository Albums { get; set; }
+        private void init()
+        {
+            images = new ImageRepository(context);
+            albums = new AlbumRepository(context);
+        }
+        public ImageRepository Images { get {
+                if (images == null)
+                {
+                    images = new ImageRepository(context);
+                }
+                return images;
+            } 
+            private set => images = value; }
+        public AlbumRepository Albums { 
+            get {
+                if (albums == null)
+                {
+                    albums = new AlbumRepository(context);
+                }
+                return albums;
+            }
+             private set => albums = value; }
 
         public int Complete()
         {
