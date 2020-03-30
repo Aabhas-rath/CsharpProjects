@@ -1,38 +1,40 @@
 ﻿@model  Website.Models.AlbumUploadModel
-<div>
-    <div class="container-sm">
-        <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-8 align-content-md-center" style="color:ActiveCaption">
-                <h2> Upload File </h2>
-                <br />
-                @using (Html.BeginForm("UploadFiles", "Manage", FormMethod.Post, new { enctype = "multipart/form-data", id = "CreateAlbum" }))
-                {
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AlbumName, "Album name ", new { })
-                        @Html.TextBoxFor(model => model.AlbumName)
-                    </div>
-                    <br/>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Files, "Uploaded Files ")
-                        @Html.TextBoxFor(model => model.Files, "image/jpeg|png", new { type = "file", @class = "form-control-file", @multiple = true, accept=".jpeg,.png,.jpg" })
-                    </div>
-
-                    <div class="modal-footer">
-                        <input class="btn btn-primary align-self-center" type="submit" value="Upload" />
-                    </div>
-                }
+    <div>
+        <div class="container-sm">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8 " style="color:ActiveCaption">
+                    <h2> Upload File </h2>
+                    <br />
+                    @using (Html.BeginForm("UploadFiles", "Manage", FormMethod.Post, new { enctype = "multipart/form-data", id = "CreateAlbum" }))
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AlbumName, "Album name ", new { })
+                            @Html.TextBoxFor(model => model.AlbumName)
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Files, "Uploaded Files ")
+                            @Html.TextBoxFor(model => model.Files, "image/jpeg|png", new { @id = "Files", type = "file", @class = "form-control-file", @multiple = true, accept = ".jpeg,.png,.jpg" })
+                        </div>
+                        <table id="filetable">
+                        </table>
+                        <div class="modal-footer">
+                            <input class="btn btn-primary align-self-center" type="submit" value="Upload" />
+                        </div>
+                    }
+                </div>
+                <div class="col-sm-2"></div>
             </div>
-
-            <div class="col-sm-2"></div>
-        </div>
-        <div class="row">
-            <div class="col-sm-5"></div>
-            <div class="col-sm-2 class="align-content-center"">
-            <div id="result"></div>
-            <p>@ViewBag.Message</p>
+            <div class="row">
+                <div class="col-sm-5"></div>
+                <div class="col-sm-2 class=" align-content-center"">
+                    <div id="result"></div>
+                </div>
+                <div class="col-sm-5"></div>
             </div>
-            <div class="col-sm-5"></div>
         </div>
+        <Script>
+            $('#Files').change(handleFileUpload);
+        </Script>
     </div>
-</div>

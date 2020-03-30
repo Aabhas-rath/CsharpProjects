@@ -96,6 +96,15 @@
         });
     };
 
+    var handleFileUpload = function () {
+        var table = $('#filetable');
+        var val = $('#Files')[0].files;
+        for (let i = 0; i < val.length; i++) {
+            table.append('<tr><td>' + val.item(i).name + '</td></tr>');
+        }
+        alert('ok');
+    };
+
 </script>
 <nav class="navbar navbar-expand-sm bg-dark fixed-top">
     <a class="navbar-brand text-light" href="#" name="@ViewBag.Title">
@@ -226,7 +235,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 
