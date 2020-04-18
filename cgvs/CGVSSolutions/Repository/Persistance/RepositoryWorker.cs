@@ -1,5 +1,6 @@
 ﻿using Repository.Core;
 using Repository.Persistance.Repositories;
+using Repository.Users;
 
 namespace Repository.Persistance
 {
@@ -9,6 +10,7 @@ namespace Repository.Persistance
         private CGVSContext context = null;
         private ImageRepository images;
         private AlbumRepository albums;
+        private ApplicationUser users;
 
         public RepositoryWorker()
         {
@@ -25,24 +27,31 @@ namespace Repository.Persistance
             images = new ImageRepository(context);
             albums = new AlbumRepository(context);
         }
-        public ImageRepository Images { get {
+        public ImageRepository Images
+        {
+            get
+            {
                 if (images == null)
                 {
                     images = new ImageRepository(context);
                 }
                 return images;
-            } 
-            private set => images = value; }
-        public AlbumRepository Albums { 
-            get {
+            }
+            private set => images = value;
+        }
+        public AlbumRepository Albums
+        {
+            get
+            {
                 if (albums == null)
                 {
                     albums = new AlbumRepository(context);
                 }
                 return albums;
             }
-             private set => albums = value; }
-
+            private set => albums = value;
+        }
+        
         public int Complete()
         {
             return context.SaveChanges();
