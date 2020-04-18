@@ -1,10 +1,11 @@
-﻿using Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Models;
 using Repository.Persistance.EntityConfigurations;
 using System.Data.Entity;
 
 namespace Repository
 {
-    public class CGVSContext : DbContext
+    public class CGVSContext : IdentityDbContext<Repository.Users.ApplicationUser>
     {
         public CGVSContext():base("Data Source=.;Initial Catalog=CGVS;Integrated Security=True;Encrypt=True;TrustServerCertificate=True")
         {
@@ -20,6 +21,7 @@ namespace Repository
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new ImageConfiguration());
+            modelBuilder.Configurations.Add(new AlbumConfigurations());
             base.OnModelCreating(modelBuilder);
         }
 
