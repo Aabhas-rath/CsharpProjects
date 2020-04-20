@@ -14,8 +14,19 @@ namespace XMLExtractor
     {
         private static DirectoryInfo directoryInfo = null;
 
-        
-       
+        private static bool PathError(string ArgumentName, out string argument)
+        {
+            Console.WriteLine($"Incorrect input Directory value : {ArgumentName}");
+            Console.WriteLine("Plese Input a value:");
+            argument = Console.ReadLine();
+            if (!(Directory.Exists(argument) || File.Exists(argument)))
+            {
+                return PathError(ArgumentName, out argument);
+            }
+            else
+                return true;
+        }
+
 
         static void Main(string[] args)
         {
@@ -29,9 +40,31 @@ namespace XMLExtractor
             }
             else
             {
-                Console.WriteLine("Incorrect input Directory value");
-                return;
+                PathError("Xml Files Folder",out from);
             }
+
+            if (Directory.Exists(to))
+            {
+                var ExcelFolder = new DirectoryInfo(to);
+
+                Console.WriteLine($"Excel files are present in {to}");
+                Console.WriteLine("Press Y to Delete all. Press N to cancel and return");
+                var input = Console.ReadKey(false);
+                if (input.Key == ConsoleKey.Y)
+                {
+                    foreach (FileInfo file in ExcelFolder.EnumerateFiles())
+                    {
+                        file.Delete();
+                    }
+                }
+                else if(input.Key == ConsoleKey.N)
+                {
+                    return;
+                }
+            }
+            else
+                PathError("Excel File creation folder", out to);
+
 
             foreach (var file in directoryInfo.EnumerateFiles())
             {
